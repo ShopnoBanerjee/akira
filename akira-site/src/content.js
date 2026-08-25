@@ -94,12 +94,14 @@ export const story = {
       role: 'Co-founder',
       bio: '[One-line bio — what they bring to AKIRA.]',
       accent: 'red',
+      photo: null,
     },
     {
-      name: '[CO-FOUNDER NAME]',
-      role: 'Co-founder',
-      bio: '[One-line bio — what they bring to AKIRA.]',
+      name: 'Aditya Paith',
+      role: 'Co-founder & Executive Chef',
+      bio: 'Runs the kitchen — the noodles, the broths, and the charcoal.',
       accent: 'blue',
+      photo: '/founders/aditya-paith.jpg',
     },
   ],
   ethos: ['Noodles made by hand', 'Broth built in-house', 'Open past midnight'],
@@ -257,14 +259,14 @@ export const community = {
     label: 'Follow @_simply_akira_',
     href: 'https://instagram.com/_simply_akira_',
   },
-  /* Flat tiles for v1 — swap each tile for a real <img> when photos land. */
+  /* `photo` falls back to the flat colour tile (tone) when not set. */
   tiles: [
-    { label: 'The bowl', tone: 'white' },
-    { label: 'Charcoal', tone: 'red' },
-    { label: 'The room', tone: 'ink' },
-    { label: 'Gyoza table', tone: 'ink' },
-    { label: 'Sakura', tone: 'white' },
-    { label: 'Late night', tone: 'red' },
+    { label: 'The bowl', tone: 'white', photo: '/community/the-bowl.jpg' },
+    { label: 'Charcoal', tone: 'red', photo: '/community/charcoal.jpg' },
+    { label: 'The room', tone: 'ink', photo: '/community/the-room.jpg' },
+    { label: 'Gyoza table', tone: 'ink', photo: '/community/gyoza-table.jpg' },
+    { label: 'Sakura', tone: 'white', photo: '/community/sakura.jpg' },
+    { label: 'Late night', tone: 'red', photo: '/community/late-night.jpg' },
   ],
 };
 

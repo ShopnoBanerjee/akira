@@ -20,6 +20,7 @@
   gap: 12px;
 }
 .tile {
+  position: relative;
   aspect-ratio: 1;
   display: flex;
   align-items: flex-end;
@@ -39,6 +40,8 @@
   border-color: var(--ink);
 }
 .tile__label {
+  position: relative;
+  z-index: 1;
   font-weight: 900;
   text-transform: uppercase;
   font-size: 11px;
@@ -49,12 +52,28 @@
 .tile--white .tile__label {
   color: var(--ink);
 }
+/* A photo tile always carries the white scrim + label, regardless of tone. */
+.tile:has(.tile__img) .tile__label {
+  color: var(--white);
+}
 
-/* When real photos land: <img class="tile__img" …> inside .tile */
 .tile__img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* Scrim so the label stays legible over any photo */
+.tile:has(.tile__img)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0) 55%
+  );
 }
 
 @media (max-width: 900px) {

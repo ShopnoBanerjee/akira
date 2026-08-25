@@ -32,6 +32,16 @@ export default function Story() {
                 )}
                 style={{ transitionDelay: `${i * 110}ms` }}
               >
+                {f.photo && (
+                  <img
+                    className="founder__photo"
+                    src={f.photo}
+                    alt={f.name}
+                    width="240"
+                    height="240"
+                    loading="lazy"
+                  />
+                )}
                 <h3 className="t-card-title">{f.name}</h3>
                 <p className="founder__role t-label">{f.role}</p>
                 <p className="t-body founder__bio">{f.bio}</p>

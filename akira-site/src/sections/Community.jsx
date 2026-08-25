@@ -29,7 +29,7 @@ export default function Community() {
           </div>
         </div>
 
-        {/* Flat tiles — replace each <span> with an <img> when photos land. */}
+        {/* Real photo when `photo` is set; falls back to the flat colour tile. */}
         <ul ref={tilesRef} className="community__tiles">
           {community.tiles.map((t, i) => (
             <li
@@ -37,6 +37,14 @@ export default function Community() {
               className={revealClass(tilesIn, `tile tile--${t.tone}`)}
               style={{ transitionDelay: `${i * 70}ms` }}
             >
+              {t.photo && (
+                <img
+                  className="tile__img"
+                  src={t.photo}
+                  alt={t.label}
+                  loading="lazy"
+                />
+              )}
               <span className="tile__label">{t.label}</span>
             </li>
           ))}
