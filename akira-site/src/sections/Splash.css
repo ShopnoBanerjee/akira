@@ -1,0 +1,249 @@
+/* ============================================================================
+   Splash — red ground, white logo, then a slurp that swallows the screen and
+   hands over to the white landing page. Transform + opacity only.
+   ========================================================================== */
+
+body.is-splashing {
+  overflow: hidden;
+}
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--akira-red);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* ---- title card ---- */
+.splash__card {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(28px, 5vh, 48px);
+  padding: 24px;
+  animation: splash-card-in 620ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.splash--slurping .splash__card {
+  animation: splash-card-out 340ms ease-in both;
+  pointer-events: none;
+}
+
+.splash__logo {
+  width: clamp(230px, 42vw, 430px);
+  height: auto;
+}
+
+.splash__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.splash__start {
+  background: var(--white);
+  color: var(--akira-red);
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  padding: 17px 46px;
+  touch-action: manipulation; /* no double-tap-zoom delay on phones */
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  box-shadow: 0 6px 0 var(--ink);
+  transition: transform 140ms ease-out, box-shadow 140ms ease-out;
+}
+.splash__start:hover {
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 var(--ink);
+}
+.splash__start:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.splash__skip {
+  touch-action: manipulation;
+  padding: 8px 12px; /* comfortable tap target */
+  color: var(--white);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---- slurp scene ---- */
+/* Overlaps the card in the same grid cell; it must NEVER intercept the tap
+   meant for the buttons underneath it — hence pointer-events: none. */
+.splash__scene {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+.splash--slurping .splash__scene {
+  animation: splash-scene-in 240ms 220ms ease-out both;
+}
+
+.splash__art {
+  width: min(78vw, 66vh, 500px);
+  height: auto;
+  overflow: visible;
+}
+
+/* the ribbon is pulled up into the mouth */
+.splash--slurping .splash__noodle {
+  transform-origin: 200px 182px;
+  animation: splash-slurp 960ms 520ms cubic-bezier(0.55, 0, 0.35, 1) both;
+}
+/* fill-box keeps the pulse centred on the ellipse instead of the viewBox origin */
+.splash--slurping .splash__mouth {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: splash-chew 190ms 520ms ease-in-out 5 both;
+}
+.splash--slurping .splash__face {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: splash-bob 190ms 520ms ease-in-out 5 both,
+    splash-face-out 300ms 1520ms ease-in both;
+}
+.splash--slurping .splash__bowl {
+  transform-origin: 200px 420px;
+  animation: splash-bowl 540ms 1340ms cubic-bezier(0.6, 0, 0.4, 1) both;
+}
+
+/* white disc that finishes the takeover, then the whole overlay fades */
+.splash__wipe {
+  /* Sits where the bowl sits, so the disc reads as the bowl swallowing the
+     screen rather than a new shape appearing. The art is 400×520 and centred,
+     so the bowl centre is ~0.31 × art-height below the viewport centre. */
+  --art: min(78vw, 66vh, 500px);
+  --wipe-y: calc(0.4 * var(--art));
+  grid-area: 1 / 1;
+  width: 40vmin;
+  height: 40vmin;
+  border-radius: 50%;
+  background: var(--white);
+  transform: translateY(var(--wipe-y)) scale(0);
+  align-self: center;
+  justify-self: center;
+  pointer-events: none;
+}
+.splash--slurping .splash__wipe {
+  animation: splash-wipe 660ms 1640ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.splash--slurping {
+  animation: splash-fade 280ms 2380ms ease-out both;
+}
+
+/* ---- keyframes ---- */
+@keyframes splash-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes splash-card-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-22px) scale(0.96);
+  }
+}
+@keyframes splash-scene-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes splash-slurp {
+  0% {
+    transform: scaleY(1) translateX(0);
+  }
+  22% {
+    transform: scaleY(0.78) translateX(-5px);
+  }
+  46% {
+    transform: scaleY(0.52) translateX(5px);
+  }
+  70% {
+    transform: scaleY(0.28) translateX(-3px);
+  }
+  100% {
+    transform: scaleY(0) translateX(0);
+  }
+}
+@keyframes splash-chew {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(0.82, 0.55);
+  }
+}
+@keyframes splash-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+@keyframes splash-bowl {
+  from {
+    transform: scale(1) translateY(0);
+  }
+  to {
+    transform: scale(2.2) translateY(-30px);
+  }
+}
+@keyframes splash-face-out {
+  to {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+@keyframes splash-wipe {
+  from {
+    transform: translateY(var(--wipe-y)) scale(0);
+  }
+  to {
+    transform: translateY(var(--wipe-y)) scale(10);
+  }
+}
+@keyframes splash-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    display: none;
+  }
+  body.is-splashing {
+    overflow: auto;
+  }
+}

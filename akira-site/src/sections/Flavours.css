@@ -1,0 +1,150 @@
+.flavours {
+  padding-block: clamp(44px, 6vw, 76px) 0;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.flavours__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.flavours__chip {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 11px 22px;
+  font-size: 12px;
+  background: var(--white);
+}
+.flavours__link {
+  font-size: 12px;
+  color: var(--akira-blue);
+  border-bottom: 2px solid var(--akira-blue);
+  padding-bottom: 3px;
+}
+
+.flavours__viewport {
+  display: flex;
+  width: max-content;
+  animation: flavours-slide 46s linear infinite;
+  will-change: transform;
+  border-block: 2px solid var(--ink);
+}
+.flavours__viewport:hover,
+.flavours__viewport:focus-within {
+  animation-play-state: paused;
+}
+
+.flavours__track {
+  display: flex;
+  margin: 0;
+}
+
+.flav-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(220px, 24vw, 300px);
+  /* min-height, not aspect-ratio: the flex row stretches items to the tallest,
+     which would override the ratio and leave the cards short. */
+  min-height: clamp(300px, 31vw, 380px);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  border-right: 2px solid var(--ink);
+}
+.flav-card--red {
+  background: var(--akira-red);
+  color: var(--white);
+}
+.flav-card--blue {
+  background: var(--akira-blue);
+  color: var(--white);
+}
+.flav-card--ink {
+  background: var(--ink);
+  color: var(--white);
+}
+.flav-card--paper {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.flav-card__oval {
+  align-self: flex-start;
+  border: 2px solid currentColor;
+  border-radius: 50% / 50%;
+  padding: 12px 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(14px, 1.5vw, 17px);
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.flav-card__jp {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 4px;
+  opacity: 0.8;
+}
+.flav-card__price {
+  font-weight: 900;
+  font-size: clamp(26px, 3vw, 34px);
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.flav-card--paper .flav-card__price {
+  color: var(--akira-red);
+}
+.flav-card__note {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--white);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.flav-card--paper .flav-card__note {
+  background: var(--ink);
+  color: var(--white);
+}
+
+@keyframes flavours-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flavours__viewport {
+    animation: none;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .flavours__track:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .flavours__bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .flav-card {
+    width: 210px;
+  }
+}

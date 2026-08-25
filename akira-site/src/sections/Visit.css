@@ -1,0 +1,96 @@
+.visit__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 6vw, 76px);
+  align-items: start;
+}
+
+.visit__details {
+  display: grid;
+  gap: 30px;
+}
+
+.visit__row {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.visit__icon {
+  color: var(--akira-red);
+  flex: none;
+  margin-top: 2px;
+}
+.visit__row-label {
+  font-size: 12px;
+  color: var(--akira-blue);
+  margin-bottom: 8px;
+}
+.visit__days {
+  display: inline-block;
+  min-width: 12.5em;
+  font-weight: 900;
+  color: var(--ink);
+}
+.visit__time {
+  color: var(--text-body);
+}
+.visit__phone {
+  border-bottom: 2px solid var(--akira-red);
+}
+
+.visit__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+/* ---- embedded Google Map, in the brand's offset-shadow frame ---- */
+.visit__map {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 10px 10px 0 var(--akira-blue);
+  overflow: hidden;
+}
+.visit__map-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.visit__map-label {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 11px;
+  color: var(--ink);
+  transition: transform 160ms ease-out;
+}
+.visit__map-label:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .visit__grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .visit__days {
+    display: block;
+    min-width: 0;
+  }
+  .visit__map {
+    box-shadow: 8px 8px 0 var(--akira-blue);
+  }
+  .visit__ctas .pill {
+    flex: 1 1 auto;
+  }
+}
