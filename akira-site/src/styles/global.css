@@ -1,0 +1,118 @@
+/* ---- modern reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img, svg, video { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; }
+h1, h2, h3, h4 { font-weight: 900; line-height: 1.05; text-wrap: balance; }
+p { text-wrap: pretty; }
+:focus-visible { outline: 3px solid var(--akira-blue); outline-offset: 3px; }
+
+/* ---- type scale (per brand typography table) ---- */
+.t-display {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1.05;
+  font-size: clamp(34px, 4.5vw, 58px);
+}
+.t-eyebrow {                       /* katakana section motif */
+  font-family: var(--font-jp);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 6px;
+  line-height: 1;
+  display: block;
+}
+.t-card-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(20px, 2.2vw, 22px);
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+}
+.t-body {
+  font-weight: 400;
+  font-size: clamp(16px, 1.35vw, 18px);
+  line-height: 1.75;
+  color: var(--text-body);
+}
+.t-label {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.t-caption {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.jp { font-family: var(--font-jp); }
+
+/* ---- layout helpers ---- */
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section-y); scroll-margin-top: var(--nav-h); }
+.section--paper { background: var(--paper); }
+.section--blue  { background: var(--akira-blue); color: var(--white); }
+.section--ink   { background: var(--ink); color: var(--white); }
+
+/* section-header motif: katakana eyebrow -> 900 uppercase heading -> 72x4 rule */
+.sec-head { margin-bottom: clamp(36px, 4.5vw, 60px); }
+.sec-head__eyebrow { color: var(--akira-red); margin-bottom: 18px; }
+.sec-head__eyebrow--blue { color: var(--akira-blue); }
+.sec-head__eyebrow--light { color: var(--white); }
+.sec-head__rule { width: 72px; height: 4px; background: var(--ink); margin-top: 22px; }
+.sec-head__rule--light { background: var(--white); }
+.sec-head__lede { margin-top: 22px; max-width: 62ch; }
+
+/* ---- pills / buttons ---- */
+.pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 15px 30px; border-radius: 999px; border: 2px solid transparent;
+  font-weight: 900; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;
+  transition: transform 180ms ease-out, background-color 180ms ease-out, color 180ms ease-out;
+}
+.pill:hover { transform: translateY(-2px); }
+.pill--red     { background: var(--akira-red); color: var(--white); border-color: var(--akira-red); }
+.pill--red:hover { background: #d92a3c; border-color: #d92a3c; }
+.pill--ink     { background: transparent; color: var(--ink); border-color: var(--ink); }
+.pill--ink:hover { background: var(--ink); color: var(--white); }
+.pill--white   { background: var(--white); color: var(--akira-blue); border-color: var(--white); }
+.pill--outline-white { background: transparent; color: var(--white); border-color: var(--white); }
+.pill--outline-white:hover { background: var(--white); color: var(--ink); }
+
+/* ---- scroll reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.reveal-visible { opacity: 1; transform: none; }
+
+/* ---- reduced motion: non-negotiable ---- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

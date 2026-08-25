@@ -1,0 +1,144 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--white);
+  border-bottom: 2px solid var(--ink);
+}
+
+.nav__inner {
+  min-height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-right: auto;
+}
+.nav__wordmark {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+.nav__kana {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--akira-red);
+}
+
+.nav__links {
+  display: flex;
+  gap: 30px;
+}
+.nav__link {
+  position: relative;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--ink);
+  padding-block: 6px;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--akira-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease-out;
+}
+.nav__link:hover::after,
+.nav__link--active::after {
+  transform: scaleX(1);
+}
+
+.nav__cta {
+  padding: 11px 22px;
+  font-size: 13px;
+}
+
+/* ---- mobile ---- */
+.nav__burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+.nav__bars,
+.nav__bars::before,
+.nav__bars::after {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: var(--ink);
+  transition: transform 200ms ease-out, opacity 150ms linear;
+}
+.nav__bars {
+  position: relative;
+}
+.nav__bars::before,
+.nav__bars::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+.nav__bars::before {
+  top: -8px;
+}
+.nav__bars::after {
+  top: 8px;
+}
+.nav__bars--x {
+  background: transparent;
+}
+.nav__bars--x::before {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav__bars--x::after {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav__sheet {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px var(--gutter) 24px;
+  border-top: 2px solid var(--ink);
+}
+.nav__sheet a:not(.pill) {
+  padding: 14px 0;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--line);
+}
+.nav__sheet .pill {
+  margin-top: 16px;
+  align-self: flex-start;
+}
+
+@media (max-width: 860px) {
+  .nav__links,
+  .nav__cta {
+    display: none;
+  }
+  .nav__burger {
+    display: inline-flex;
+  }
+  .nav__sheet--open {
+    display: flex;
+  }
+}

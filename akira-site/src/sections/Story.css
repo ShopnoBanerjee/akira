@@ -1,0 +1,76 @@
+.story__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
+.story__prose p + p {
+  margin-top: 20px;
+}
+
+.story__founders {
+  display: grid;
+  gap: 28px;
+}
+
+.founder {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 26px 26px 28px;
+}
+.founder--red {
+  box-shadow: 8px 8px 0 var(--akira-red);
+}
+.founder--blue {
+  box-shadow: 8px 8px 0 var(--akira-blue);
+}
+
+.founder__role {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--akira-red);
+}
+.founder--blue .founder__role {
+  color: var(--akira-blue);
+}
+.founder__bio {
+  margin-top: 14px;
+  font-size: 16px;
+}
+
+.story__ethos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(38px, 5vw, 64px);
+}
+.ethos-chip {
+  background: var(--ink);
+  color: var(--white);
+  padding: 13px 20px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .story__grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .founder {
+    padding: 22px;
+  }
+  .founder--red,
+  .founder--blue {
+    box-shadow: 6px 6px 0 currentColor;
+  }
+  .founder--red {
+    box-shadow: 6px 6px 0 var(--akira-red);
+  }
+  .founder--blue {
+    box-shadow: 6px 6px 0 var(--akira-blue);
+  }
+}

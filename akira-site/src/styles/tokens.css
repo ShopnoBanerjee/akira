@@ -1,0 +1,24 @@
+:root {
+  /* Official AKIRA brand palette (guideline PDF, p.5) */
+  --akira-red: #ee3345;
+  --akira-blue: #326fb7;
+  --ink: #231f20;
+
+  /* Derived neutrals — stay within this set */
+  --white: #ffffff;
+  --paper: #f7f5f2;           /* alternate section ground */
+  --text-body: #4a4547;       /* body copy on white */
+  --text-muted: #6e6a6b;      /* captions, footnotes */
+  --text-muted-dark: #b9b5b6; /* muted on ink */
+  --blue-soft: #7aa5d8;       /* blue accents on ink */
+  --line: #ddd8d3;            /* hairline borders */
+
+  --font-sans: 'Noto Sans', 'Segoe UI', sans-serif;
+  --font-jp: 'Noto Sans JP', sans-serif;
+
+  /* Layout */
+  --wrap: 1120px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --section-y: clamp(72px, 9vw, 128px);
+  --nav-h: 68px;
+}
