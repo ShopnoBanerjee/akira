@@ -7,6 +7,9 @@
    POS bills differ on a few lines; the printed menu is treated as canonical.
    ========================================================================== */
 
+/* A value still in [brackets] is unfilled; the page leaves it out. */
+export const isFilled = (v) => Boolean(v) && !String(v).startsWith('[');
+
 export const TODO = {
   streetAddress: '[STREET ADDRESS]', // confirm with the floor; map pin sits near Kalikapur Rd, Kasba
   city: 'Kolkata, West Bengal',
@@ -39,17 +42,16 @@ export const nav = {
 };
 
 export const hero = {
-  kicker: 'KOLKATA · EST. 2026',
+  title: 'Handmade ramen',
+  lede: 'A ramen bar in Kolkata: shoyu, spicy miso and tonkotsu bowls from ₹329, skewers off the charcoal, and a kitchen that runs past midnight.',
   logoAlt:
     'AKIRA — ramen bowl mascot with the AKIRA wordmark and アキラ in katakana',
-  tagline:
-    'Handmade ramen, charcoal skewers and a room that stays loud until midnight.',
+  photoAlt:
+    'The AKIRA street front at night: lit sign boxes of a ramen bowl, a daruma, Godzilla and 麺道 above the AKIRA fascia',
+  photoCaption: 'The street front, after dark.',
   ctas: {
     primary: { label: 'See the menu', href: '#menu' },
-    secondary: {
-      label: '@_simply_akira_',
-      href: 'https://instagram.com/_simply_akira_',
-    },
+    secondary: { label: 'Find us', href: '#visit' },
   },
 };
 
@@ -64,19 +66,15 @@ export const marquee = [
   { en: 'OPEN LATE', jp: '深夜まで' },
 ];
 
-/* Auto-scrolling signature rail. Tones cycle through the flat brand grounds. */
+/* The four things most tables order, shown as they arrive. */
 export const flavours = {
-  label: 'What people order',
-  cta: { label: 'See the full menu', href: '#menu' },
+  heading: 'On the table',
+  cta: { label: 'Full menu and prices', href: '#menu' },
   items: [
-    { name: 'Spicy Miso', jp: 'ピリ辛味噌', price: 349, tone: 'red', note: 'Regulars’ pick' },
-    { name: 'Shoyu', jp: '醤油', price: 329, tone: 'paper' },
-    { name: 'Tonkatsu', jp: '豚カツ', price: 369, tone: 'blue' },
-    { name: 'Cream Cheese Gyoza', jp: '餃子', price: 180, tone: 'ink', note: 'Table favourite' },
-    { name: 'Pork Yakitori', jp: '焼き鳥', price: 220, tone: 'red' },
-    { name: 'Chicken Karaage', jp: '唐揚げ', price: 230, tone: 'paper' },
-    { name: 'Sakura', jp: '桜', price: 169, tone: 'blue' },
-    { name: 'Dora Cake', jp: 'どら焼き', price: 149, tone: 'ink' },
+    { name: 'Ramen', jp: 'ラーメン', from: 329, photo: '/dishes/ramen.jpg', alt: 'A bowl of ramen with noodles, soft egg, bok choy, mushroom and glazed meat, from above' },
+    { name: 'Gyoza', jp: '餃子', from: 180, photo: '/dishes/gyoza.jpg', alt: 'Pan-fried gyoza topped with spring onion on a long black plate, with pickled ginger' },
+    { name: 'Karaage', jp: '唐揚げ', from: 230, photo: '/dishes/karaage.jpg', alt: 'A plate of crisp fried karaage handed across the pass' },
+    { name: 'Small plates', jp: '小皿', from: 149, photo: '/dishes/small-plates.jpg', alt: 'Dumplings on a black plate, picked up with wooden chopsticks' },
   ],
 };
 
@@ -124,7 +122,7 @@ export const menu = {
         name: 'Akira Spicy Miso Ramen',
         price: 349,
         desc: 'Handmade noodles in rich miso broth, fresh vegetables, choice of meat, and a bold spicy kick.',
-        badge: 'Regulars’ pick',
+        badge: 'Spicy',
         flagship: true,
       },
       {
@@ -161,7 +159,7 @@ export const menu = {
           {
             name: 'Cream Cheese Mushroom (five pcs)',
             price: 180,
-            note: 'Table favourite',
+            note: 'Vegetarian',
           },
         ],
         addon: 'Add cheese or burnt garlic broth · ₹50',
@@ -254,19 +252,18 @@ export const community = {
   eyebrow: 'コミュニティ',
   heading: 'Built for the\nlate table',
   prose:
-    'AKIRA fills up after eight and empties out past midnight. Anime nights, birthdays that run long, the table of four that becomes six — the room does most of the programming itself, and Instagram is where it gets planned.',
+    'Paper lanterns, walls papered in Japanese posters, a hand-painted dragon and red stools at the tables. Most of the room fills after eight and the kitchen keeps going past midnight. New plates show up on Instagram first.',
   cta: {
     label: 'Follow @_simply_akira_',
     href: 'https://instagram.com/_simply_akira_',
   },
-  /* `photo` falls back to the flat colour tile (tone) when not set. */
+  /* First photo is the tall one in the mosaic. */
   tiles: [
-    { label: 'The bowl', tone: 'white', photo: '/community/the-bowl.jpg' },
-    { label: 'Charcoal', tone: 'red', photo: '/community/charcoal.jpg' },
-    { label: 'The room', tone: 'ink', photo: '/community/the-room.jpg' },
-    { label: 'Gyoza table', tone: 'ink', photo: '/community/gyoza-table.jpg' },
-    { label: 'Sakura', tone: 'white', photo: '/community/sakura.jpg' },
-    { label: 'Late night', tone: 'red', photo: '/community/late-night.jpg' },
+    { label: 'The street front', photo: '/community/street-signs.jpg', alt: 'Lit sign boxes outside AKIRA: Godzilla, the AKIRA logo and a Yum Yum Brain Food noodle bowl' },
+    { label: 'The dragon', photo: '/community/sakura.jpg', alt: 'A hand-painted red dragon on the wall with AKIRA written down its body' },
+    { label: 'The kitchen', photo: '/community/kitchen.jpg', alt: 'Knives on a magnetic strip in the AKIRA kitchen' },
+    { label: 'Red stools', photo: '/community/red-stools.jpg', alt: 'A bowl of ramen on a table beside a red stool' },
+    { label: 'After dark', photo: '/community/late-night.jpg', alt: 'A plate held in front of an AKIRA apron' },
   ],
 };
 
@@ -282,6 +279,8 @@ export const partner = {
     { word: 'Full-price', note: 'Growth without discounting' },
   ],
   cta: { label: 'Talk to us' },
+  fallbackLabel: 'Message us on Instagram',
+  fallbackHref: 'https://instagram.com/_simply_akira_',
 };
 
 export const visit = {

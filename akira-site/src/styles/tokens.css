@@ -16,6 +16,10 @@
   --font-sans: 'Noto Sans', 'Segoe UI', sans-serif;
   --font-jp: 'Noto Sans JP', sans-serif;
 
+  /* Motion — strong custom curves; the CSS built-ins are too weak */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
   /* Layout */
   --wrap: 1120px;
   --gutter: clamp(20px, 5vw, 56px);

@@ -1,52 +1,44 @@
 import { hero, marquee } from '../content';
-import { useInView, revealClass } from '../hooks/useInView';
 import './Hero.css';
 
 export default function Hero() {
-  const [ref, inView] = useInView(0.15);
-
   return (
     <section className="hero" id="top">
-      {/* Halftone-dot circles — the only permitted texture (guideline §colour). */}
-      <div className="hero__dots hero__dots--red" aria-hidden="true" />
-      <div className="hero__dots hero__dots--blue" aria-hidden="true" />
-
-      <div className="hero__inner wrap" ref={ref}>
-        <p
-          className={revealClass(inView, 'hero__kicker t-label')}
-          style={{ transitionDelay: '0ms' }}
-        >
-          {hero.kicker}
-        </p>
-
-        <img
-          className={revealClass(inView, 'hero__logo')}
-          style={{ transitionDelay: '80ms' }}
-          src="/akira-logo.svg"
-          alt={hero.logoAlt}
-          width="863"
-          height="503"
-          fetchPriority="high"
-          decoding="async"
-        />
-
-        <h1 className={revealClass(inView, 'hero__tagline')} style={{ transitionDelay: '160ms' }}>
-          {hero.tagline}
-        </h1>
-
-        <div className={revealClass(inView, 'hero__ctas')} style={{ transitionDelay: '240ms' }}>
-          <a className="pill pill--red" href={hero.ctas.primary.href}>
-            {hero.ctas.primary.label}
-          </a>
-          <a
-            className="pill pill--ink"
-            href={hero.ctas.secondary.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {hero.ctas.secondary.label}
-          </a>
+      <div className="hero__inner wrap">
+        <div className="hero__copy">
+          <img
+            className="hero__logo"
+            src="/akira-logo.svg"
+            alt={hero.logoAlt}
+            width="863"
+            height="503"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <h1 className="hero__title">{hero.title}</h1>
+          <p className="hero__lede">{hero.lede}</p>
+          <div className="hero__ctas">
+            <a className="pill pill--red" href={hero.ctas.primary.href}>
+              {hero.ctas.primary.label}
+            </a>
+            <a className="pill pill--ink" href={hero.ctas.secondary.href}>
+              {hero.ctas.secondary.label}
+            </a>
+          </div>
         </div>
+
+        <figure className="hero__photo">
+          <img
+            src="/hero/street-front-1200.jpg"
+            srcSet="/hero/street-front-700.jpg 700w, /hero/street-front-1200.jpg 1200w"
+            sizes="(max-width: 860px) 100vw, 50vw"
+            alt={hero.photoAlt}
+            width="1200"
+            height="1500"
+            fetchPriority="high"
+          />
+          <figcaption className="hero__caption">{hero.photoCaption}</figcaption>
+        </figure>
       </div>
 
       <Marquee />
@@ -64,7 +56,7 @@ function Marquee() {
           <span className="marquee__jp jp" lang="ja">
             {m.jp}
           </span>
-          <span className="marquee__dot">●</span>
+          <span className="marquee__dot" />
         </li>
       ))}
     </ul>

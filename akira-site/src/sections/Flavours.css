@@ -1,150 +1,92 @@
 .flavours {
-  padding-block: clamp(44px, 6vw, 76px) 0;
-  overflow: hidden;
+  padding-block: clamp(64px, 8vw, 112px) 0;
   background: var(--white);
 }
 
 .flavours__bar {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 26px;
+  margin-bottom: clamp(24px, 3vw, 36px);
 }
-.flavours__chip {
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  padding: 11px 22px;
-  font-size: 12px;
-  background: var(--white);
+.flavours__title {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(30px, 3.6vw, 48px);
+  letter-spacing: -0.02em;
 }
 .flavours__link {
-  font-size: 12px;
+  font-weight: 700;
+  font-size: 16px;
   color: var(--akira-blue);
-  border-bottom: 2px solid var(--akira-blue);
-  padding-bottom: 3px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
 
-.flavours__viewport {
-  display: flex;
-  width: max-content;
-  animation: flavours-slide 46s linear infinite;
-  will-change: transform;
-  border-block: 2px solid var(--ink);
-}
-.flavours__viewport:hover,
-.flavours__viewport:focus-within {
-  animation-play-state: paused;
+.flavours__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 22px);
 }
 
-.flavours__track {
-  display: flex;
+.dish {
   margin: 0;
 }
-
-.flav-card {
-  position: relative;
-  flex: 0 0 auto;
-  width: clamp(220px, 24vw, 300px);
-  /* min-height, not aspect-ratio: the flex row stretches items to the tallest,
-     which would override the ratio and leave the cards short. */
-  min-height: clamp(300px, 31vw, 380px);
-  padding: 22px;
+.dish__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+}
+.dish__meta {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 10px;
-  border-right: 2px solid var(--ink);
+  gap: 4px;
+  margin-top: 14px;
 }
-.flav-card--red {
-  background: var(--akira-red);
-  color: var(--white);
-}
-.flav-card--blue {
-  background: var(--akira-blue);
-  color: var(--white);
-}
-.flav-card--ink {
-  background: var(--ink);
-  color: var(--white);
-}
-.flav-card--paper {
-  background: var(--paper);
-  color: var(--ink);
-}
-
-.flav-card__oval {
-  align-self: flex-start;
-  border: 2px solid currentColor;
-  border-radius: 50% / 50%;
-  padding: 12px 24px;
+.dish__name {
   font-weight: 900;
   text-transform: uppercase;
-  font-size: clamp(14px, 1.5vw, 17px);
-  letter-spacing: 0.5px;
-  line-height: 1.15;
-  text-wrap: balance;
+  font-size: clamp(17px, 1.5vw, 20px);
 }
-.flav-card__jp {
+.dish__jp {
+  margin-left: 8px;
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 4px;
-  opacity: 0.8;
+  font-size: 13px;
+  color: var(--akira-blue);
 }
-.flav-card__price {
-  font-weight: 900;
-  font-size: clamp(26px, 3vw, 34px);
-  letter-spacing: -0.5px;
-  line-height: 1;
-}
-.flav-card--paper .flav-card__price {
-  color: var(--akira-red);
-}
-.flav-card__note {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: var(--white);
+.dish__price {
+  font-weight: 700;
+  font-size: 16px;
   color: var(--ink);
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 1px;
-}
-.flav-card--paper .flav-card__note {
-  background: var(--ink);
-  color: var(--white);
+  white-space: nowrap;
 }
 
-@keyframes flavours-slide {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flavours__viewport {
-    animation: none;
-    width: 100%;
+/* Phone: a swipe row with the next dish peeking in from the edge. */
+@media (max-width: 860px) {
+  .flavours__grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 72%;
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
   }
-  .flavours__track:last-child {
+  .flavours__grid::-webkit-scrollbar {
     display: none;
   }
-}
-
-@media (max-width: 720px) {
+  .dish {
+    scroll-snap-align: start;
+  }
   .flavours__bar {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .flav-card {
-    width: 210px;
+    gap: 6px;
   }
 }

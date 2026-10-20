@@ -75,13 +75,11 @@
 /* ---- add-ons strip ---- */
 .menu__addons {
   margin-top: 30px;
-  border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--white);
   padding: 22px 24px;
 }
 .menu__addons-label {
-  font-size: 12px;
   color: var(--akira-blue);
   margin-bottom: 14px;
 }
@@ -96,8 +94,7 @@
   gap: 16px;
   font-size: 15px;
   color: var(--text-body);
-  border-bottom: 1px dotted var(--line);
-  padding-bottom: 7px;
+  padding-block: 4px;
 }
 .menu__addons-price {
   font-weight: 900;
@@ -113,9 +110,8 @@
 }
 .plate-card {
   background: var(--white);
-  border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 26px 24px;
+  padding: 28px 26px;
 }
 .plate-card__head {
   display: flex;
@@ -131,11 +127,10 @@
   margin-left: 10px;
 }
 .plate-card__from {
-  font-weight: 900;
-  font-size: 13px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--akira-red);
+  font-weight: 700;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
   white-space: nowrap;
 }
 .plate-card__desc {
@@ -152,8 +147,7 @@
   gap: 16px;
   font-size: 16px;
   color: var(--text-body);
-  border-bottom: 1px dotted var(--line);
-  padding-bottom: 8px;
+  padding-block: 3px;
 }
 .plate-card__note {
   display: inline-block;
@@ -163,8 +157,8 @@
   font-size: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--akira-blue);
-  border: 1px solid var(--akira-blue);
+  color: var(--white);
+  background: var(--akira-blue);
   border-radius: 999px;
   padding: 3px 8px;
   vertical-align: 2px;
@@ -195,7 +189,6 @@
 }
 .drink-group__label {
   color: var(--akira-blue);
-  font-size: 12px;
   margin-bottom: 16px;
   padding-bottom: 10px;
   border-bottom: 2px solid var(--akira-blue);
@@ -237,7 +230,7 @@
   .menu__plates,
   .menu__addons-list,
   .menu__drinks-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .ramen-card,
   .ramen-card--flagship {
@@ -250,4 +243,12 @@
     flex-direction: column;
     gap: 6px;
   }
+}
+
+/* Prices line up down the column. */
+.ramen-card__price,
+.menu__addons-price,
+.plate-card__price,
+.drink-group__price {
+  font-variant-numeric: tabular-nums;
 }

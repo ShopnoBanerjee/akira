@@ -1,16 +1,10 @@
 import { menu } from '../content';
 import SectionHead from '../components/SectionHead';
-import { useInView, revealClass } from '../hooks/useInView';
 import './Menu.css';
 
 const rupee = (n) => `₹${n}`;
 
 export default function Menu() {
-  const [ramenRef, ramenIn] = useInView(0.15);
-  const [addonRef, addonIn] = useInView(0.2);
-  const [platesRef, platesIn] = useInView(0.12);
-  const [drinksRef, drinksIn] = useInView(0.2);
-
   return (
     <section className="section section--paper menu" id="menu">
       <div className="wrap">
@@ -28,15 +22,11 @@ export default function Menu() {
           </span>
         </h3>
 
-        <div ref={ramenRef} className="menu__ramen">
-          {menu.ramen.items.map((item, i) => (
+        <div className="menu__ramen">
+          {menu.ramen.items.map((item) => (
             <article
               key={item.name}
-              className={revealClass(
-                ramenIn,
-                item.flagship ? 'ramen-card ramen-card--flagship' : 'ramen-card'
-              )}
-              style={{ transitionDelay: `${i * 110}ms` }}
+              className={item.flagship ? 'ramen-card ramen-card--flagship' : 'ramen-card'}
             >
               {item.badge && <span className="ramen-card__badge">{item.badge}</span>}
               <h4 className="t-card-title">{item.name}</h4>
@@ -46,8 +36,8 @@ export default function Menu() {
           ))}
         </div>
 
-        <div ref={addonRef} className={revealClass(addonIn, 'menu__addons')}>
-          <p className="t-label menu__addons-label">{menu.ramen.addons.label}</p>
+        <div className="menu__addons">
+          <p className="t-tag menu__addons-label">{menu.ramen.addons.label}</p>
           <ul className="menu__addons-list">
             {menu.ramen.addons.items.map((a) => (
               <li key={a.name}>
@@ -67,12 +57,11 @@ export default function Menu() {
         </h3>
         <p className="t-caption menu__group-note">{menu.plates.note}</p>
 
-        <div ref={platesRef} className="menu__plates">
-          {menu.plates.categories.map((cat, i) => (
+        <div className="menu__plates">
+          {menu.plates.categories.map((cat) => (
             <article
               key={cat.name}
-              className={revealClass(platesIn, 'plate-card')}
-              style={{ transitionDelay: `${i * 90}ms` }}
+              className="plate-card"
             >
               <header className="plate-card__head">
                 <h4 className="t-card-title">
@@ -103,7 +92,7 @@ export default function Menu() {
         </div>
 
         {/* ---- Drinks & sweets ---- */}
-        <div ref={drinksRef} className={revealClass(drinksIn, 'menu__drinks')}>
+        <div className="menu__drinks">
           <h3 className="menu__group-title menu__group-title--inline">
             {menu.drinks.label}
             <span className="menu__group-jp jp" lang="ja">
@@ -113,7 +102,7 @@ export default function Menu() {
           <div className="menu__drinks-grid">
             {menu.drinks.groups.map((g) => (
               <div key={g.name} className="drink-group">
-                <p className="t-label drink-group__label">{g.name}</p>
+                <p className="t-tag drink-group__label">{g.name}</p>
                 <ul>
                   {g.items.map((it) => (
                     <li key={it.name}>

@@ -19,7 +19,14 @@ a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; padding: 0; }
 h1, h2, h3, h4 { font-weight: 900; line-height: 1.05; text-wrap: balance; }
 p { text-wrap: pretty; }
-:focus-visible { outline: 3px solid var(--akira-blue); outline-offset: 3px; }
+
+/* ---- browser surfaces, themed from the palette ---- */
+:focus-visible { outline: 3px solid var(--akira-blue); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--akira-red); color: var(--white); }
+html { caret-color: var(--akira-red); scrollbar-color: var(--ink) var(--paper); accent-color: var(--akira-red); }
+a { text-underline-offset: 0.2em; }
+/* Prices and times line up in columns */
+.tnum { font-variant-numeric: tabular-nums; }
 
 /* ---- type scale (per brand typography table) ---- */
 .t-display {
@@ -57,6 +64,12 @@ p { text-wrap: pretty; }
   letter-spacing: 1px;
   line-height: 1;
 }
+/* Content labels: sentence case at a readable size, never tiny tracked caps. */
+.t-tag {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.3;
+}
 .t-caption {
   font-weight: 500;
   font-size: 13px;
@@ -86,24 +99,30 @@ p { text-wrap: pretty; }
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   padding: 15px 30px; border-radius: 999px; border: 2px solid transparent;
   font-weight: 900; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;
-  transition: transform 180ms ease-out, background-color 180ms ease-out, color 180ms ease-out;
+  transition: transform 160ms var(--ease-out), background-color 160ms ease, color 160ms ease, border-color 160ms ease;
 }
-.pill:hover { transform: translateY(-2px); }
+/* Press feedback everywhere; hover only where a real pointer hovers. */
+.pill:active { transform: scale(0.97); }
 .pill--red     { background: var(--akira-red); color: var(--white); border-color: var(--akira-red); }
-.pill--red:hover { background: #d92a3c; border-color: #d92a3c; }
 .pill--ink     { background: transparent; color: var(--ink); border-color: var(--ink); }
-.pill--ink:hover { background: var(--ink); color: var(--white); }
 .pill--white   { background: var(--white); color: var(--akira-blue); border-color: var(--white); }
 .pill--outline-white { background: transparent; color: var(--white); border-color: var(--white); }
-.pill--outline-white:hover { background: var(--white); color: var(--ink); }
-
-/* ---- scroll reveal ---- */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 500ms ease-out, transform 500ms ease-out;
+@media (hover: hover) and (pointer: fine) {
+  .pill--red:hover { background: var(--ink); border-color: var(--ink); }
+  .pill--ink:hover { background: var(--ink); color: var(--white); }
+  .pill--white:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .pill--outline-white:hover { background: var(--white); color: var(--ink); }
 }
-.reveal-visible { opacity: 1; transform: none; }
+
+/* ---- scroll reveal ----
+   Photographs only — a wipe up from the bottom edge, not an identical fade
+   on every block. Text is never hidden waiting for an observer. */
+.reveal {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 700ms var(--ease-in-out);
+}
+.reveal:not(.reveal-visible) { clip-path: inset(0 0 100% 0); }
+.reveal-visible { clip-path: inset(0 0 0 0); }
 
 /* ---- reduced motion: non-negotiable ---- */
 @media (prefers-reduced-motion: reduce) {
@@ -114,5 +133,5 @@ p { text-wrap: pretty; }
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .reveal:not(.reveal-visible) { clip-path: none; }
 }

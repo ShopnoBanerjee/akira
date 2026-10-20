@@ -1,62 +1,40 @@
-.community__grid {
+/* Heading and copy side by side across the top, photos full width below. */
+.community__head {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(36px, 6vw, 80px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: end;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+.community__head .sec-head {
+  margin-bottom: 0;
 }
 
-/* Solid white, not 0.9 alpha: blended 0.9-white on #326fb7 measures 4.50:1,
-   right on the AA line. Solid white is 5.13:1. */
+/* Solid white: 0.9-alpha white on #326fb7 measures 4.50:1, right on the AA line. */
 .community__body .t-body {
   color: var(--white);
 }
 .community__cta {
-  margin-top: 30px;
+  margin-top: 26px;
 }
 
-.community__tiles {
+.community__mosaic {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1.15fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 12px;
+  aspect-ratio: 16 / 9;
 }
 .tile {
   position: relative;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: flex-end;
-  padding: 14px;
-  border: 2px solid rgba(255, 255, 255, 0.55);
   overflow: hidden;
-}
-.tile--white {
-  background: var(--white);
-}
-.tile--red {
-  background: var(--akira-red);
-  border-color: var(--akira-red);
-}
-.tile--ink {
+  border-radius: 14px;
   background: var(--ink);
-  border-color: var(--ink);
+  min-height: 0;
 }
-.tile__label {
-  position: relative;
-  z-index: 1;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 1px;
-  line-height: 1.2;
-  color: var(--white);
+.tile:first-child {
+  grid-row: span 2;
 }
-.tile--white .tile__label {
-  color: var(--ink);
-}
-/* A photo tile always carries the white scrim + label, regardless of tone. */
-.tile:has(.tile__img) .tile__label {
-  color: var(--white);
-}
-
 .tile__img {
   position: absolute;
   inset: 0;
@@ -64,25 +42,36 @@
   height: 100%;
   object-fit: cover;
 }
-/* Scrim so the label stays legible over any photo */
-.tile:has(.tile__img)::after {
-  content: '';
+/* Solid ink pill (the brand allows no gradients) keeps the label legible. */
+.tile__label {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0) 55%
-  );
+  z-index: 1;
+  left: 12px;
+  bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--ink);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--white);
 }
 
-@media (max-width: 900px) {
-  .community__grid {
-    grid-template-columns: 1fr;
+@media (max-width: 860px) {
+  .community__head {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
   }
-}
-@media (max-width: 720px) {
-  .community__tiles {
-    grid-template-columns: repeat(2, 1fr);
+  .community__mosaic {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    aspect-ratio: auto;
+  }
+  .tile {
+    aspect-ratio: 1;
+  }
+  .tile:first-child {
+    grid-row: auto;
+    grid-column: span 2;
+    aspect-ratio: 4 / 3;
   }
 }

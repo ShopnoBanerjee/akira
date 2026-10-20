@@ -1,7 +1,7 @@
-import { visit, TODO, brand } from '../content';
-import SectionHead from '../components/SectionHead';
-import { useInView, revealClass } from '../hooks/useInView';
-import './Visit.css';
+import { visit, TODO, brand, isFilled } from "../content";
+import SectionHead from "../components/SectionHead";
+import { useInView, revealClass } from "../hooks/useInView";
+import "./Visit.css";
 
 /* Inline SVG icons — zero deps, red per the colour rules. */
 const PinIcon = () => (
@@ -32,13 +32,10 @@ const PhoneIcon = () => (
 /* Coordinates resolved from the share link in TODO.mapsUrl
    (AKIRA | Japanese Ramen Restaurant). Keyless embed — no Maps API bill. */
 const MAP_EMBED =
-  'https://www.google.com/maps?q=22.5023364,88.3852304&z=17&hl=en&output=embed';
+  "https://www.google.com/maps?q=22.5023364,88.3852304&z=17&hl=en&output=embed";
 
 export default function Visit() {
-  const [ref, inView] = useInView(0.15);
   const [mapRef, mapIn] = useInView(0.2);
-
-  const phoneIsPlaceholder = TODO.phone.startsWith('[');
 
   return (
     <section className="section visit" id="visit">
@@ -51,33 +48,31 @@ export default function Visit() {
         />
 
         <div className="visit__grid">
-          <div ref={ref} className="visit__details">
-            <div
-              className={revealClass(inView, 'visit__row')}
-              style={{ transitionDelay: '0ms' }}
-            >
+          <div className="visit__details">
+            <div className="visit__row">
               <span className="visit__icon">
                 <PinIcon />
               </span>
               <div>
-                <p className="t-label visit__row-label">Find us</p>
+                <p className="t-tag visit__row-label">Find us</p>
                 <p className="t-body">
-                  {TODO.streetAddress}
-                  <br />
+                  {isFilled(TODO.streetAddress) && (
+                    <>
+                      {TODO.streetAddress}
+                      <br />
+                    </>
+                  )}
                   {TODO.city}
                 </p>
               </div>
             </div>
 
-            <div
-              className={revealClass(inView, 'visit__row')}
-              style={{ transitionDelay: '100ms' }}
-            >
+            <div className="visit__row">
               <span className="visit__icon">
                 <ClockIcon />
               </span>
               <div>
-                <p className="t-label visit__row-label">Hours</p>
+                <p className="t-tag visit__row-label">Hours</p>
                 {TODO.hours.map((h) => (
                   <p key={h.days} className="t-body">
                     <strong className="visit__days">{h.days}</strong>
@@ -87,34 +82,26 @@ export default function Visit() {
               </div>
             </div>
 
-            <div
-              className={revealClass(inView, 'visit__row')}
-              style={{ transitionDelay: '200ms' }}
-            >
-              <span className="visit__icon">
-                <PhoneIcon />
-              </span>
-              <div>
-                <p className="t-label visit__row-label">Book a table</p>
-                <p className="t-body">
-                  {phoneIsPlaceholder ? (
-                    TODO.phone
-                  ) : (
+            {isFilled(TODO.phone) && (
+              <div className="visit__row">
+                <span className="visit__icon">
+                  <PhoneIcon />
+                </span>
+                <div>
+                  <p className="t-tag visit__row-label">Book a table</p>
+                  <p className="t-body">
                     <a
                       className="visit__phone"
-                      href={`tel:${TODO.phone.replace(/\s/g, '')}`}
+                      href={`tel:${TODO.phone.replace(/\s/g, "")}`}
                     >
                       {TODO.phone}
                     </a>
-                  )}
-                </p>
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
 
-            <div
-              className={revealClass(inView, 'visit__ctas')}
-              style={{ transitionDelay: '280ms' }}
-            >
+            <div className="visit__ctas">
               <a
                 className="pill pill--red"
                 href={TODO.mapsUrl}
@@ -136,7 +123,7 @@ export default function Visit() {
 
           {/* Live Google Map, framed in the brand's offset-shadow card.
               Loads lazily — the iframe is the page's only third-party request. */}
-          <div ref={mapRef} className={revealClass(mapIn, 'visit__map')}>
+          <div ref={mapRef} className={revealClass(mapIn, "visit__map")}>
             <iframe
               className="visit__map-frame"
               title="AKIRA on Google Maps"

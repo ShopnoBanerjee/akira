@@ -1,5 +1,3 @@
-import { useInView, revealClass } from '../hooks/useInView';
-
 /**
  * The one section-header motif used on every section:
  * katakana eyebrow → 900 uppercase display heading → 72×4px rule.
@@ -14,7 +12,6 @@ export default function SectionHead({
   accent = 'red',
   align = 'start',
 }) {
-  const [ref, inView] = useInView();
   const light = tone === 'light';
 
   const eyebrowClass = [
@@ -28,8 +25,7 @@ export default function SectionHead({
 
   return (
     <header
-      ref={ref}
-      className={revealClass(inView, 'sec-head')}
+      className="sec-head"
       style={align === 'center' ? { textAlign: 'center' } : undefined}
     >
       <span className={eyebrowClass} lang="ja">

@@ -1,45 +1,37 @@
-import { partner, TODO } from '../content';
+import { partner, TODO, isFilled } from '../content';
 import SectionHead from '../components/SectionHead';
-import { useInView, revealClass } from '../hooks/useInView';
 import './Partner.css';
 
 export default function Partner() {
-  const [ref, inView] = useInView(0.18);
   const email = TODO.partnerEmail;
-  const isPlaceholder = email.startsWith('[');
+  const hasEmail = isFilled(email);
 
   return (
     <section className="section section--ink partner" id="partner">
-      <div className="wrap partner__inner">
-        <SectionHead
-          eyebrow={partner.eyebrow}
-          heading={partner.heading}
-          tone="light"
-          align="center"
-        />
+      <div className="wrap partner__grid">
+        <div className="partner__copy">
+          <SectionHead eyebrow={partner.eyebrow} heading={partner.heading} tone="light" />
+          <p className="t-body partner__prose">{partner.prose}</p>
+          {/* Until there's an inbox, send people to Instagram rather than a dead button. */}
+          <a
+            className="pill pill--red partner__cta"
+            href={hasEmail ? `mailto:${email}?subject=AKIRA%20—%20partnership` : partner.fallbackHref}
+            {...(hasEmail ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+          >
+            {hasEmail ? partner.cta.label : partner.fallbackLabel}
+          </a>
+          {hasEmail && <p className="partner__email">{email}</p>}
+        </div>
 
-        <p className="t-body partner__prose">{partner.prose}</p>
-
-        <ul ref={ref} className="partner__stats">
-          {partner.stats.map((s, i) => (
-            <li
-              key={s.word}
-              className={revealClass(inView, 'word-stat')}
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              <span className="word-stat__word">{s.word}</span>
-              <span className="word-stat__note">{s.note}</span>
-            </li>
+        {/* Three facts set as type, not three identical boxes. */}
+        <dl className="partner__facts">
+          {partner.stats.map((s) => (
+            <div key={s.word} className="fact">
+              <dt className="fact__word">{s.word}</dt>
+              <dd className="fact__note">{s.note}</dd>
+            </div>
           ))}
-        </ul>
-
-        <a
-          className="pill pill--red partner__cta"
-          href={isPlaceholder ? '#partner' : `mailto:${email}?subject=AKIRA%20—%20partnership`}
-        >
-          {partner.cta.label}
-        </a>
-        <p className="partner__email">{email}</p>
+        </dl>
       </div>
     </section>
   );
