@@ -84,9 +84,154 @@
         ]
       }
     </script>
+
+    <!-- Intro: painted from the HTML itself, before any JS, on every visit. -->
+    <script>document.documentElement.classList.add('splashing');</script>
+    <link rel="preload" as="image" href="/akira-logo-white.svg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/hero/street-front-1200.jpg"
+      imagesrcset="/hero/street-front-700.jpg 700w, /hero/street-front-1200.jpg 1200w"
+      imagesizes="(max-width: 860px) 100vw, 50vw" />
+    <noscript><style>#splash { display: none; } html.splashing { overflow: auto; }</style></noscript>
+    <style>
+      html.splashing { overflow: hidden; }
+      #splash {
+        --red: #ee3345; --ink: #231f20;
+        --mx: 50%; --my: 42%;
+        --e: cubic-bezier(0.23, 1, 0.32, 1);
+        --io: cubic-bezier(0.77, 0, 0.175, 1);
+        position: fixed; inset: 0; z-index: 1000;
+        display: grid; place-items: center;
+        background: var(--red); color: #fff;
+        font-family: 'Noto Sans', 'Segoe UI', sans-serif;
+        /* the whole red screen is slurped into the mouth at the end */
+        clip-path: circle(150vmax at var(--mx) var(--my));
+        animation: sp-collapse 600ms var(--io) 2250ms forwards;
+      }
+      #splash > * { grid-area: 1 / 1; }
+      .sp-card { display: grid; justify-items: center; gap: 18px;
+        animation: sp-in 500ms var(--e) both, sp-out 300ms ease-in 800ms forwards; }
+      .sp-logo { width: min(64vw, 380px); height: auto; }
+      .sp-line { margin: 0; font-weight: 700; font-size: 15px; }
+      .sp-scene { width: min(70vw, 52vh, 380px); height: auto; overflow: visible;
+        animation: sp-scene 450ms var(--e) 850ms both; }
+      .sp-bowl { animation: sp-rise 550ms var(--e) 850ms both; }
+      .sp-n { stroke-dasharray: 1 1;
+        animation: sp-pull 800ms cubic-bezier(0.55, 0, 0.3, 1) calc(1250ms + var(--i) * 45ms) both; }
+      .sp-noodles { animation: sp-wiggle 120ms ease-in-out 1250ms 7 alternate both; }
+      .sp-face { transform-box: fill-box; transform-origin: 50% 80%;
+        animation: sp-puff 800ms var(--e) 1250ms both, sp-gulp 240ms ease-out 2080ms both; }
+      .sp-steam path { animation: sp-steam 1400ms ease-in-out 850ms infinite both; }
+      .sp-steam path + path { animation-delay: 1250ms; }
+      .sp-skip { align-self: end; margin-bottom: max(28px, env(safe-area-inset-bottom));
+        background: none; border: 0; color: #fff; font-family: inherit; font-weight: 700;
+        font-size: 14px; line-height: 1; text-decoration: underline; text-underline-offset: 4px;
+        padding: 12px 16px; cursor: pointer; animation: sp-in 400ms var(--e) 300ms both; }
+      #splash.sp-skipping { animation: sp-collapse 420ms var(--io) forwards; }
+      #splash.sp-skipping .sp-skip { visibility: hidden; }
+
+      @keyframes sp-in { from { opacity: 0; transform: translateY(14px) scale(0.97); } }
+      @keyframes sp-out { to { opacity: 0; transform: translateY(-18px) scale(0.98); visibility: hidden; } }
+      @keyframes sp-scene { from { opacity: 0; } }
+      @keyframes sp-rise { from { transform: translateY(70px); } }
+      @keyframes sp-pull { to { stroke-dashoffset: 1; } }
+      @keyframes sp-wiggle { from { transform: translateX(-3px); } to { transform: translateX(3px); } }
+      @keyframes sp-puff { 60%, 100% { transform: scale(1.05, 1.03); } }
+      @keyframes sp-gulp { 0% { transform: scale(1.05, 1.03); } 50% { transform: scale(0.97, 1.06); } 100% { transform: scale(1); } }
+      @keyframes sp-steam { 0% { opacity: 0; transform: translateY(8px); } 40% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-22px); } }
+      @keyframes sp-collapse { to { clip-path: circle(0px at var(--mx) var(--my)); visibility: hidden; } }
+      @keyframes sp-fade { to { opacity: 0; visibility: hidden; } }
+
+      /* Reduced motion: the card, then a plain fade. No slurp, no collapse. */
+      @media (prefers-reduced-motion: reduce) {
+        #splash, #splash.sp-skipping { clip-path: none; animation: sp-fade 250ms ease 700ms forwards; }
+        .sp-card { animation: none; }
+        .sp-scene { display: none; }
+      }
+    </style>
   </head>
   <body>
+    <div id="splash">
+      <div class="sp-card">
+        <img class="sp-logo" src="/akira-logo-white.svg" width="779" height="456" alt="AKIRA アキラ" />
+        <p class="sp-line">Handmade ramen · Kolkata</p>
+      </div>
+      <svg class="sp-scene" viewBox="0 0 400 560" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <g class="sp-steam" stroke="#fff" stroke-width="6">
+          <path d="M66 352c-12-16 12-28 0-46" /><path d="M334 352c12-16-12-28 0-46" />
+        </g>
+        <g class="sp-face">
+          <circle cx="200" cy="140" r="112" fill="#fff" stroke="#231f20" stroke-width="6" />
+          <path d="M96 92c62-36 146-36 208 0" stroke="#231f20" stroke-width="26" />
+          <path d="M96 92c62-36 146-36 208 0" stroke="#ee3345" stroke-width="15" />
+          <g stroke="#231f20" stroke-width="8">
+            <path d="M138 132c8-13 26-13 34 0" /><path d="M228 132c8-13 26-13 34 0" />
+          </g>
+          <circle cx="126" cy="172" r="15" fill="#ee3345" /><circle cx="274" cy="172" r="15" fill="#ee3345" />
+          <ellipse id="sp-mouth" cx="200" cy="212" rx="24" ry="20" fill="#231f20" />
+        </g>
+        <!-- each strand: an ink outline under a white noodle, both retracting into the mouth -->
+        <g class="sp-noodles">
+          <g stroke="#231f20" stroke-width="15">
+            <path class="sp-n" style="--i:4" pathLength="1" d="M184.0 216 Q188.0 238.0 170.0 260.0 Q152.0 282.0 156.0 304.0 Q160.0 326.0 142.0 348.0 Q124.0 370.0 128.0 392.0" />
+            <path class="sp-n" style="--i:2" pathLength="1" d="M190.4 216 Q175.2 238.0 182.1 260.0 Q188.9 282.0 173.7 304.0 Q158.5 326.0 165.3 348.0 Q172.2 370.0 157.0 392.0" />
+            <path class="sp-n" style="--i:0" pathLength="1" d="M196.8 216 Q206.5 238.0 194.1 260.0 Q181.8 282.0 191.4 304.0 Q201.1 326.0 188.7 348.0 Q176.3 370.0 186.0 392.0" />
+            <path class="sp-n" style="--i:1" pathLength="1" d="M203.2 216 Q193.7 238.0 206.1 260.0 Q218.6 282.0 209.1 304.0 Q199.6 326.0 212.1 348.0 Q224.5 370.0 215.0 392.0" />
+            <path class="sp-n" style="--i:3" pathLength="1" d="M209.6 216 Q224.9 238.0 218.2 260.0 Q211.5 282.0 226.8 304.0 Q242.1 326.0 235.4 348.0 Q228.7 370.0 244.0 392.0" />
+            <path class="sp-n" style="--i:5" pathLength="1" d="M216.0 216 Q212.1 238.0 230.2 260.0 Q248.4 282.0 244.5 304.0 Q240.6 326.0 258.8 348.0 Q276.9 370.0 273.0 392.0" />
+          </g>
+          <g stroke="#fff" stroke-width="7">
+            <path class="sp-n" style="--i:4" pathLength="1" d="M184.0 216 Q188.0 238.0 170.0 260.0 Q152.0 282.0 156.0 304.0 Q160.0 326.0 142.0 348.0 Q124.0 370.0 128.0 392.0" />
+            <path class="sp-n" style="--i:2" pathLength="1" d="M190.4 216 Q175.2 238.0 182.1 260.0 Q188.9 282.0 173.7 304.0 Q158.5 326.0 165.3 348.0 Q172.2 370.0 157.0 392.0" />
+            <path class="sp-n" style="--i:0" pathLength="1" d="M196.8 216 Q206.5 238.0 194.1 260.0 Q181.8 282.0 191.4 304.0 Q201.1 326.0 188.7 348.0 Q176.3 370.0 186.0 392.0" />
+            <path class="sp-n" style="--i:1" pathLength="1" d="M203.2 216 Q193.7 238.0 206.1 260.0 Q218.6 282.0 209.1 304.0 Q199.6 326.0 212.1 348.0 Q224.5 370.0 215.0 392.0" />
+            <path class="sp-n" style="--i:3" pathLength="1" d="M209.6 216 Q224.9 238.0 218.2 260.0 Q211.5 282.0 226.8 304.0 Q242.1 326.0 235.4 348.0 Q228.7 370.0 244.0 392.0" />
+            <path class="sp-n" style="--i:5" pathLength="1" d="M216.0 216 Q212.1 238.0 230.2 260.0 Q248.4 282.0 244.5 304.0 Q240.6 326.0 258.8 348.0 Q276.9 370.0 273.0 392.0" />
+          </g>
+        </g>
+        <g class="sp-bowl">
+          <path d="M48 404h304c0 82-68 136-152 136S48 486 48 404Z" fill="#fff" stroke="#231f20" stroke-width="6" />
+          <path d="M62 448c92 14 184 14 276 0" stroke="#ee3345" stroke-width="12" />
+          <path d="M60 402 q20 -34 40 0 q20 -34 40 0 q20 -34 40 0 q20 -34 40 0 q20 -34 40 0 q20 -34 40 0 q20 -34 40 0" fill="#fff" stroke="#231f20" stroke-width="6" />
+          <rect x="34" y="390" width="332" height="26" rx="13" fill="#fff" stroke="#231f20" stroke-width="6" />
+          <g stroke="#231f20" stroke-width="9"><path d="M262 378 384 310" /><path d="M272 392 394 328" /></g>
+        </g>
+      </svg>
+      <button class="sp-skip" type="button">Skip intro</button>
+    </div>
     <div id="root"></div>
+    <script>
+      (function () {
+        var s = document.getElementById('splash'), h = document.documentElement, done = false;
+        if (!s) return;
+        // Aim the final collapse at the mouth, wherever it lands at this size.
+        function place() {
+          var m = document.getElementById('sp-mouth').getBoundingClientRect();
+          if (!m.width) return;
+          s.style.setProperty('--mx', m.left + m.width / 2 + 'px');
+          s.style.setProperty('--my', m.top + m.height / 2 + 'px');
+        }
+        function onKey(e) {
+          if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') skip();
+        }
+        function skip() { place(); s.classList.add('sp-skipping'); }
+        function finish() {
+          if (done) return;
+          done = true;
+          s.remove();
+          h.classList.remove('splashing');
+          removeEventListener('resize', place);
+          removeEventListener('keydown', onKey);
+          var t = location.hash && document.getElementById(location.hash.slice(1));
+          if (t) t.scrollIntoView();
+        }
+        place();
+        addEventListener('resize', place);
+        addEventListener('keydown', onKey);
+        s.addEventListener('click', skip);
+        s.addEventListener('animationend', function (e) { if (e.target === s) finish(); });
+        setTimeout(finish, 5000); // never trap the page if an animation event is missed
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,4 +1,3 @@
-import Splash from './sections/Splash';
 import Nav from './sections/Nav';
 import Hero from './sections/Hero';
 import Flavours from './sections/Flavours';
@@ -12,7 +11,6 @@ import Footer from './sections/Footer';
 export default function App() {
   return (
     <>
-      <Splash />
       <Nav />
       <main>
         <Hero />
