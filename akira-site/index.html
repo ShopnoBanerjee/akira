@@ -10,7 +10,7 @@
       name="description"
       content="Handmade ramen, charcoal yakitori and gyoza in Kolkata. Shoyu, spicy miso and tonkotsu bowls from ₹329. Open late, seven days."
     />
-    <link rel="canonical" href="https://akira-ramen.netlify.app/" />
+    <link rel="canonical" href="https://simplyakira.com/" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/og-image.png" />
@@ -26,7 +26,7 @@
       property="og:description"
       content="Handmade ramen, charcoal yakitori and gyoza in Kolkata. Open late, seven days."
     />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content="https://simplyakira.com/og-image.png" />
     <meta property="og:image:alt" content="The AKIRA ramen-bowl logo on white" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
@@ -37,7 +37,7 @@
       name="twitter:description"
       content="Handmade ramen, charcoal yakitori and gyoza in Kolkata. Open late, seven days."
     />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:image" content="https://simplyakira.com/og-image.png" />
 
     <!-- Fonts: Noto Sans (brand typeface) + Noto Sans JP for katakana -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,10 +58,13 @@
         "priceRange": "₹₹",
         "currenciesAccepted": "INR",
         "paymentAccepted": "UPI, Cash",
-        "image": "/og-image.png",
+        "image": "https://simplyakira.com/og-image.png",
+        "url": "https://simplyakira.com/",
+        "telephone": "+919163677724",
+        "email": "management@simplyakira.com",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "[STREET ADDRESS]",
+          "streetAddress": "34 Naskarpara Road",
           "addressLocality": "Kolkata",
           "addressRegion": "West Bengal",
           "postalCode": "700078",
@@ -71,22 +74,184 @@
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-            "opens": "17:00",
-            "closes": "23:30"
+            "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday"],
+            "opens": "16:00",
+            "closes": "00:00"
           },
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Friday", "Saturday", "Sunday"],
+            "dayOfWeek": ["Thursday", "Friday", "Saturday"],
             "opens": "17:00",
-            "closes": "00:30"
+            "closes": "01:30"
           }
         ]
       }
     </script>
+
+    <!-- Intro: painted from the HTML itself, before any JS, on every visit.
+         The red screen is cut into the wavy noodles of the logo, then slurped away.
+         Everything moves by transform and opacity, so a busy main thread can't stutter it. -->
+    <script>document.documentElement.classList.add('splashing');</script>
+    <link rel="preload" as="image" href="/akira-logo-white.svg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/hero/street-front-1200.jpg"
+      imagesrcset="/hero/street-front-700.jpg 700w, /hero/street-front-1200.jpg 1200w"
+      imagesizes="(max-width: 860px) 100vw, 55vw" />
+    <noscript><style>#splash { display: none; } html.splashing { overflow: auto; }</style></noscript>
+    <style>
+      html.splashing { overflow: hidden; }
+      #splash { --red: #ee3345; --ink: #231f20; --part: 950ms;
+        --e: cubic-bezier(0.23, 1, 0.32, 1); --io: cubic-bezier(0.77, 0, 0.175, 1);
+        position: fixed; inset: 0; z-index: 1000; overflow: hidden; color: #fff;
+        font-family: 'Noto Sans', 'Segoe UI', sans-serif; }
+      /* Solid red behind the noodles; rising, it opens the gaps between them from the bottom up. */
+      .sp-back { position: absolute; inset: 0; background: var(--red);
+        animation: sp-part 400ms var(--io) var(--part) both; }
+      .sp-logo { position: absolute; inset: 0; margin: auto; width: min(74vw, 80vh, 640px); height: auto;
+        animation: sp-stamp 460ms var(--e) both, sp-swap 1ms linear var(--part) both; }
+      .sp-n { position: absolute; display: block; overflow: hidden; background: var(--red); will-change: transform; }
+      .sp-n img { position: absolute; max-width: none; visibility: hidden; animation: sp-show 1ms linear var(--show, var(--part)) both; }
+      .sp-go .sp-n { animation: sp-lift 640ms linear var(--d) both; }
+      .sp-sfx { position: absolute; left: 50%; top: 50%; display: flex; width: min(86vw, 104vh, 880px);
+        transform: translate(-50%, -50%) rotate(-7deg); pointer-events: none; }
+      .sp-sfx svg { width: 25%; height: auto; overflow: visible; opacity: 0;
+        fill: var(--ink); stroke: #fff; stroke-width: 7; stroke-linejoin: round; paint-order: stroke; }
+      .sp-go .sp-sfx svg { animation: sp-pop 640ms linear calc(120ms + var(--i) * 70ms) both; }
+      .sp-skip { position: absolute; left: 50%; bottom: max(20px, env(safe-area-inset-bottom)); translate: -50% 0;
+        background: none; border: 0; color: #fff; font: 700 14px/1 'Noto Sans', 'Segoe UI', sans-serif;
+        text-decoration: underline; text-underline-offset: 4px; padding: 12px 16px; cursor: pointer;
+        animation: sp-fadein 400ms ease 500ms both; }
+      .sp-go .sp-skip { visibility: hidden; }
+      .sp-go { animation: sp-end var(--total, 1100ms) linear both; }
+
+      @keyframes sp-stamp { from { opacity: 0; transform: scale(1.14); } 40% { opacity: 1; } }
+      @keyframes sp-swap { to { visibility: hidden; } }
+      @keyframes sp-show { to { visibility: visible; } }
+      @keyframes sp-part { to { transform: translateY(-101%); } }
+      /* Dips, then accelerates away, whipping harder from side to side as the tail runs out. */
+      @keyframes sp-lift {
+        0% { transform: translate3d(0, 0, 0); animation-timing-function: ease-out; }
+        16% { transform: translate3d(0, 1.6%, 0); animation-timing-function: ease-in; }
+        48% { transform: translate3d(calc(var(--a) * -0.5), -11%, 0); }
+        72% { transform: translate3d(calc(var(--a) * 0.8), -40%, 0); }
+        88% { transform: translate3d(calc(var(--a) * -1), -70%, 0); }
+        100% { transform: translate3d(0, -100%, 0); }
+      }
+      @keyframes sp-pop {
+        0% { opacity: 0; transform: scale(1.7); animation-timing-function: var(--e); }
+        22% { opacity: 1; transform: none; }
+        72% { opacity: 1; transform: none; animation-timing-function: ease-in; }
+        100% { opacity: 0; transform: translateY(-34%); }
+      }
+      @keyframes sp-fadein { from { opacity: 0; } }
+      @keyframes sp-end { to { visibility: hidden; } }
+      @keyframes sp-fade { to { opacity: 0; visibility: hidden; } }
+
+      /* Reduced motion: the logo, then a plain fade. */
+      @media (prefers-reduced-motion: reduce) {
+        #splash, #splash.sp-go { animation: sp-fade 250ms ease 700ms both; }
+        .sp-back, .sp-logo { animation: none; }
+        .sp-sfx { display: none; }
+      }
+    </style>
   </head>
   <body>
+    <div id="splash">
+      <div class="sp-back"></div>
+      <div id="sp-noodles"></div>
+      <img class="sp-logo" src="/akira-logo-white.svg" width="779" height="456" alt="AKIRA アキラ" />
+      <!-- zuru zuru: the sound of a slurp, lettered as a manga would -->
+      <div class="sp-sfx" aria-hidden="true">
+        <svg viewBox="0 0 100 100" style="--i:0"><path id="sp-zu" d="M78 4Q79 6 80 8Q82 11 83 13Q85 16 85 18L76 22Q74 18 72 15Q70 11 68 8ZM91 0Q92 2 94 5Q95 7 96 10Q98 12 99 14L89 18Q88 15 86 11Q83 7 81 4ZM83 22Q83 24 81 26Q80 28 79 30Q77 34 74 40Q71 46 67 52Q63 58 59 63Q53 69 46 76Q40 82 32 87Q24 92 17 96L4 83Q12 80 20 75Q28 71 34 65Q41 60 45 55Q48 51 51 47Q54 43 56 39Q58 36 59 32Q58 32 56 32Q53 32 50 32Q47 32 44 32Q40 32 37 32Q34 32 32 32Q29 32 28 32Q26 32 23 32Q21 33 19 33Q17 33 15 33V16Q17 16 19 16Q22 16 24 17Q27 17 28 17Q30 17 32 17Q35 17 38 17Q42 17 45 17Q49 17 52 17Q55 17 58 17Q60 17 61 17Q65 17 68 16Q72 16 73 15ZM60 53Q64 56 68 60Q73 64 77 69Q82 73 85 77Q89 81 91 84L77 96Q74 91 69 85Q64 80 59 74Q54 69 49 64Z" /></svg>
+        <svg viewBox="0 0 100 100" style="--i:1"><path id="sp-ru" d="M49 86Q50 84 50 82Q50 80 50 77Q50 76 50 73Q50 70 50 65Q50 61 50 55Q50 50 50 45Q50 39 50 34Q50 30 50 26Q50 22 50 20Q50 16 50 13Q49 11 49 11H67Q67 11 67 14Q66 16 66 20Q66 22 66 25Q66 28 66 32Q66 36 66 41Q66 45 66 50Q66 54 66 58Q66 62 66 65Q66 68 66 69Q70 68 74 65Q78 62 82 58Q85 55 88 50L98 64Q94 69 88 74Q82 79 76 83Q70 88 64 91Q62 92 61 93Q60 93 59 94ZM2 84Q9 79 13 72Q17 66 19 60Q20 57 21 52Q22 48 22 42Q22 37 22 31Q22 26 22 21Q22 18 22 15Q22 13 21 11H39Q39 11 39 12Q38 14 38 16Q38 18 38 21Q38 25 38 31Q38 37 38 43Q37 49 37 55Q36 60 35 64Q33 73 28 80Q24 88 17 94Z" /></svg>
+        <svg viewBox="0 0 100 100" style="--i:2"><use href="#sp-zu" /></svg>
+        <svg viewBox="0 0 100 100" style="--i:3"><use href="#sp-ru" /></svg>
+      </div>
+      <button class="sp-skip" type="button">Skip intro</button>
+    </div>
     <div id="root"></div>
+    <script>
+      (function () {
+        var s = document.getElementById('splash'), h = document.documentElement, done = false, gone = false;
+        if (!s) return;
+        var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var logo = s.querySelector('.sp-logo'), started = Date.now(), poll;
+
+        // One red noodle, wave and rounded tail included, as a clip path. Each is its own small
+        // layer and carries its own slice of the logo, so the logo tears apart strand by strand.
+        function cut() {
+          var W = innerWidth, H = innerHeight, box = document.getElementById('sp-noodles');
+          var pitch = W / Math.max(5, Math.round(W / (W < 700 ? 66 : 92)));
+          var w = pitch * 0.86, half = pitch * 1.9, A = pitch * 0.3, k = half * 0.3642;
+          var pad = Math.ceil(A * 2), top = Math.ceil(half), n = Math.ceil((H + top + w) / half);
+          var strands = Math.ceil(W / pitch) + 2, mid = (strands - 1) / 2, html = '', longest = 0;
+          var lx = logo.offsetLeft, ly = logo.offsetTop, lw = logo.offsetWidth, lh = logo.offsetHeight;
+          for (var i = 0; i < strands; i++) {
+            var x = (i - 1) * pitch, sw = Math.ceil(w) + pad * 2, sh = top + Math.ceil(n * half + w), a = pad, b = pad + w;
+            var side = function (edge, dir) {
+              var out = '';
+              for (var j = 0; j < n; j++) {
+                var at = dir > 0 ? j : n - j, to = at + dir;
+                var sign = at % 2 ? -1 : 1, y0 = at * half, y1 = to * half;
+                out += 'C' + [edge + sign * A, y0 + dir * k, edge - sign * A, y1 - dir * k, edge - sign * A, y1].map(Math.round).join(' ');
+              }
+              return out;
+            };
+            var endY = Math.round(n * half), endS = n % 2 ? -1 : 1, r = Math.round(w / 2);
+            var d = 'M' + Math.round(a + A) + ' 0' + side(a, 1) + 'A' + r + ' ' + r + ' 0 0 0 ' + Math.round(b + endS * A) + ' ' + endY + side(b, -1) + 'Z';
+            var left = Math.round(x - pad), delay = Math.round(Math.abs(i - mid) / mid * 400 + (i * 37 % 5) * 7);
+            longest = Math.max(longest, delay);
+            var slice = left < lx + lw && left + sw > lx
+              ? '<img src="/akira-logo-white.svg" alt="" style="left:' + (lx - left) + 'px;top:' + (ly + top) + 'px;width:' + lw + 'px;height:' + lh + 'px">' : '';
+            html += '<i class="sp-n" style="left:' + left + 'px;top:' + -top + 'px;width:' + sw + 'px;height:' + sh +
+              'px;clip-path:path(\'' + d + '\');--d:' + delay + 'ms;--a:' + Math.round(A * 0.7) + 'px">' + slice + '</i>';
+          }
+          box.innerHTML = html;
+          // A recut after a resize must still swap in the slices when the gaps open.
+          s.style.setProperty('--show', Math.max(0, 950 - (Date.now() - started)) + 'ms');
+          s.style.setProperty('--total', longest + 640 + 'ms');
+        }
+
+        // Lift off only once the page underneath has something to show.
+        function ready() {
+          var photo = document.querySelector('#root img[src*="street-front"]');
+          return photo && photo.complete;
+        }
+        function go() {
+          if (gone) return;
+          gone = true;
+          clearInterval(poll);
+          s.classList.add('sp-go');
+          setTimeout(finish, 3000); // never trap the page if an animation event is missed
+        }
+        function skip() {
+          go();
+          s.getAnimations({ subtree: true }).forEach(function (a) { a.updatePlaybackRate(2.4); });
+        }
+        function onKey(e) {
+          if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') skip();
+        }
+        function finish() {
+          if (done) return;
+          done = true;
+          clearInterval(poll);
+          s.remove();
+          h.classList.remove('splashing');
+          removeEventListener('keydown', onKey);
+          removeEventListener('resize', recut);
+          var t = location.hash && document.getElementById(location.hash.slice(1));
+          if (t) t.scrollIntoView();
+        }
+        function recut() { if (!gone) cut(); }
+        if (!still) { cut(); addEventListener('resize', recut); }
+        addEventListener('keydown', onKey);
+        s.addEventListener('click', skip);
+        s.addEventListener('animationend', function (e) { if (e.target === s) finish(); });
+        poll = setInterval(function () {
+          var t = Date.now() - started;
+          if (t > 1400 && (ready() || t > 4000)) go();
+        }, 50);
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

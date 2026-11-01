@@ -1,45 +1,27 @@
-import { partner, TODO } from '../content';
+import { partner, venue } from '../content';
 import SectionHead from '../components/SectionHead';
-import { useInView, revealClass } from '../hooks/useInView';
+import Tails from '../components/Tails';
 import './Partner.css';
 
 export default function Partner() {
-  const [ref, inView] = useInView(0.18);
-  const email = TODO.partnerEmail;
-  const isPlaceholder = email.startsWith('[');
+  const mailto = `mailto:${venue.email}?subject=AKIRA%20partnership`;
 
   return (
-    <section className="section section--ink partner" id="partner">
-      <div className="wrap partner__inner">
-        <SectionHead
-          eyebrow={partner.eyebrow}
-          heading={partner.heading}
-          tone="light"
-          align="center"
-        />
-
-        <p className="t-body partner__prose">{partner.prose}</p>
-
-        <ul ref={ref} className="partner__stats">
-          {partner.stats.map((s, i) => (
-            <li
-              key={s.word}
-              className={revealClass(inView, 'word-stat')}
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              <span className="word-stat__word">{s.word}</span>
-              <span className="word-stat__note">{s.note}</span>
-            </li>
-          ))}
-        </ul>
-
-        <a
-          className="pill pill--red partner__cta"
-          href={isPlaceholder ? '#partner' : `mailto:${email}?subject=AKIRA%20—%20partnership`}
-        >
-          {partner.cta.label}
-        </a>
-        <p className="partner__email">{email}</p>
+    <section className="partner has-tails" id="partner">
+      <Tails color="var(--akira-red)" />
+      <div className="wrap partner__grid">
+        <SectionHead kana={partner.kana} heading={partner.heading} />
+        <div data-rise="" style={{ '--i': 1 }}>
+          <p className="t-lead">{partner.prose}</p>
+          <div className="partner__contact">
+            <a className="pill pill--ink" href={mailto}>
+              {partner.cta.label}
+            </a>
+            <a className="partner__email" href={mailto}>
+              {venue.email}
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

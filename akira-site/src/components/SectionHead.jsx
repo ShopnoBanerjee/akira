@@ -1,57 +1,20 @@
-import { useInView, revealClass } from '../hooks/useInView';
-
 /**
- * The one section-header motif used on every section:
- * katakana eyebrow → 900 uppercase display heading → 72×4px rule.
- * `tone`: 'ink' (default, dark ground text) | 'light' (on blue/ink sections)
- * `accent`: 'red' (default) | 'blue' — the eyebrow colour on light grounds.
+ * The one section header on the page: the display heading, with its katakana
+ * answering from the far side of the grid.
  */
-export default function SectionHead({
-  eyebrow,
-  heading,
-  lede,
-  tone = 'ink',
-  accent = 'red',
-  align = 'start',
-}) {
-  const [ref, inView] = useInView();
-  const light = tone === 'light';
-
-  const eyebrowClass = [
-    't-eyebrow',
-    'sec-head__eyebrow',
-    light ? 'sec-head__eyebrow--light' : '',
-    !light && accent === 'blue' ? 'sec-head__eyebrow--blue' : '',
-  ]
-    .filter(Boolean)
-    .join(' ');
-
+export default function SectionHead({ kana, heading, lede }) {
   return (
-    <header
-      ref={ref}
-      className={revealClass(inView, 'sec-head')}
-      style={align === 'center' ? { textAlign: 'center' } : undefined}
-    >
-      <span className={eyebrowClass} lang="ja">
-        {eyebrow}
-      </span>
-      <h2 className="t-display" style={{ whiteSpace: 'pre-line' }}>
-        {heading}
-      </h2>
-      <div
-        className={`sec-head__rule${light ? ' sec-head__rule--light' : ''}`}
-        style={align === 'center' ? { marginInline: 'auto' } : undefined}
-        aria-hidden="true"
-      />
+    <header className="sec-head">
+      <div className="sec-head__row" data-rise="">
+        <h2 className="t-display" style={{ whiteSpace: 'pre-line' }}>
+          {heading}
+        </h2>
+        <span className="sec-head__kana jp" lang="ja" aria-hidden="true">
+          {kana}
+        </span>
+      </div>
       {lede && (
-        <p
-          className="t-body sec-head__lede"
-          style={{
-            /* 0.95 keeps AA on the blue ground (4.76:1); 0.86 would not. */
-            color: light ? 'rgba(255,255,255,0.95)' : undefined,
-            marginInline: align === 'center' ? 'auto' : undefined,
-          }}
-        >
+        <p className="t-lead sec-head__lede" data-rise="" style={{ '--i': 1 }}>
           {lede}
         </p>
       )}

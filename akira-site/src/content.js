@@ -2,22 +2,22 @@
    AKIRA — site content
    Single source of truth for every string on the page.
 
-   FILL BEFORE LAUNCH — everything in `TODO` is a placeholder.
    Prices below are transcribed verbatim from the printed menu PDF (Aug 2026).
    POS bills differ on a few lines; the printed menu is treated as canonical.
    ========================================================================== */
 
-export const TODO = {
-  streetAddress: '[STREET ADDRESS]', // confirm with the floor; map pin sits near Kalikapur Rd, Kasba
-  city: 'Kolkata, West Bengal',
-  phone: '[PHONE]',
+export const venue = {
+  streetAddress: '34 Naskarpara Road',
+  city: 'Kolkata 700078',
+  phone: '91636 77724',
+  phoneHref: 'tel:+919163677724',
   mapsUrl: 'https://maps.app.goo.gl/2WhihfqfnKz7q7Qw9',
-  partnerEmail: '[CONTACT EMAIL]',
-  // Hours below are derived from 40 days of POS data (first bill ~4pm, last
-  // ~00:30, peak 8-11pm). Confirm the posted hours before publishing.
+  email: 'management@simplyakira.com',
+  /* days: 0 is Sunday. open and close are minutes from that day's midnight,
+     so a close past 1440 runs into the next morning. */
   hours: [
-    { days: 'Monday – Thursday', time: '5:00 pm – 11:30 pm' },
-    { days: 'Friday – Sunday', time: '5:00 pm – 12:30 am' },
+    { label: 'Sunday to Wednesday', time: '4 pm to 12 am', days: [0, 1, 2, 3], open: 960, close: 1440 },
+    { label: 'Thursday to Saturday', time: '5 pm to 1:30 am', days: [4, 5, 6], open: 1020, close: 1530 },
   ],
 };
 
@@ -30,26 +30,21 @@ export const brand = {
 
 export const nav = {
   links: [
-    { label: 'Story', href: '#story' },
     { label: 'Menu', href: '#menu' },
+    { label: 'Story', href: '#story' },
     { label: 'Community', href: '#community' },
-    { label: 'Visit', href: '#visit' },
   ],
   cta: { label: 'Visit us', href: '#visit' },
 };
 
 export const hero = {
-  kicker: 'KOLKATA · EST. 2026',
-  logoAlt:
-    'AKIRA — ramen bowl mascot with the AKIRA wordmark and アキラ in katakana',
-  tagline:
-    'Handmade ramen, charcoal skewers and a room that stays loud until midnight.',
+  title: 'Handmade ramen',
+  lede: 'A ramen bar in South Kolkata: shoyu, spicy miso and tonkotsu bowls from ₹329, and skewers off the charcoal.',
+  photoAlt:
+    'The AKIRA street front at night: lit sign boxes of a ramen bowl, a daruma, Godzilla and 麺道 above the AKIRA fascia',
   ctas: {
     primary: { label: 'See the menu', href: '#menu' },
-    secondary: {
-      label: '@_simply_akira_',
-      href: 'https://instagram.com/_simply_akira_',
-    },
+    secondary: { label: 'Find us', href: '#visit' },
   },
 };
 
@@ -64,54 +59,41 @@ export const marquee = [
   { en: 'OPEN LATE', jp: '深夜まで' },
 ];
 
-/* Auto-scrolling signature rail. Tones cycle through the flat brand grounds. */
-export const flavours = {
-  label: 'What people order',
-  cta: { label: 'See the full menu', href: '#menu' },
-  items: [
-    { name: 'Spicy Miso', jp: 'ピリ辛味噌', price: 349, tone: 'red', note: 'Regulars’ pick' },
-    { name: 'Shoyu', jp: '醤油', price: 329, tone: 'paper' },
-    { name: 'Tonkatsu', jp: '豚カツ', price: 369, tone: 'blue' },
-    { name: 'Cream Cheese Gyoza', jp: '餃子', price: 180, tone: 'ink', note: 'Table favourite' },
-    { name: 'Pork Yakitori', jp: '焼き鳥', price: 220, tone: 'red' },
-    { name: 'Chicken Karaage', jp: '唐揚げ', price: 230, tone: 'paper' },
-    { name: 'Sakura', jp: '桜', price: 169, tone: 'blue' },
-    { name: 'Dora Cake', jp: 'どら焼き', price: 149, tone: 'ink' },
-  ],
-};
-
 export const story = {
-  eyebrow: 'ストーリー',
-  heading: 'A bowl worth\ncoming back for',
+  kana: 'ストーリー',
+  heading: 'Worth coming\nback for',
   prose: [
-    'AKIRA opened in Kolkata in July 2026 with one idea: modern Japan, made approachable. Handmade noodles, broth built in-house, fresh ingredients — nothing precious, nothing intimidating.',
+    'AKIRA opened in Kolkata in July 2026 with one idea: modern Japan, made approachable. Handmade noodles, broth built in-house, fresh ingredients. Nothing precious, nothing intimidating.',
     'The room takes its cue from anime and Japanese street culture rather than a tearoom. It is warm, a little loud, and built for the ritual: a bowl, a plate of gyoza, a skewer off the charcoal, a Sakura, and a dora cake to finish.',
-    'Most of our tables are twos and small groups, and most of them arrive after eight. That is the room we cook for — young Kolkatans looking for somewhere to land on a weeknight, and somewhere to bring people on a weekend.',
+    'Most of our tables are twos and small groups, and most of them arrive after eight. That is the room we cook for: Kolkata looking for somewhere to land on a weeknight, and somewhere to bring people on a weekend.',
   ],
   founders: [
     {
-      name: '[CO-FOUNDER NAME]',
-      role: 'Co-founder',
-      bio: '[One-line bio — what they bring to AKIRA.]',
-      accent: 'red',
+      name: 'Aditya Paith',
+      role: 'Co-founder & Executive Chef',
+      bio: 'Runs the kitchen: the noodles, the broths and the charcoal.',
+      photo: '/founders/aditya-paith.jpg',
     },
     {
-      name: '[CO-FOUNDER NAME]',
-      role: 'Co-founder',
-      bio: '[One-line bio — what they bring to AKIRA.]',
-      accent: 'blue',
+      name: 'Shopno Banerjee',
+      role: 'Co-founder & Operations Manager',
+      bio: 'Runs everything outside the kitchen: the numbers, the marketing and the press.',
+      photo: '/founders/shopno-banerjee.jpg',
     },
   ],
-  ethos: ['Noodles made by hand', 'Broth built in-house', 'Open past midnight'],
 };
 
 export const menu = {
-  eyebrow: 'メニュー',
+  kana: 'メニュー',
   heading: 'The menu',
-  lede: 'Three bowls, a charcoal grill and a short list of things to share. Prices exactly as printed on the menu.',
+  lede: 'Three bowls, a charcoal grill and a short list of things to share.',
   ramen: {
     label: 'Ramen',
     jp: 'ラーメン',
+    photos: [
+      { src: '/dishes/ramen.jpg', alt: 'A bowl of ramen on a red stool: soft egg, charred pork, greens and spring onion, with wooden chopsticks across the rim' },
+      { src: '/dishes/ramen-overhead.jpg', alt: 'A bowl of ramen from above: creamy broth, minced meat, chilli oil, bok choy, mushrooms and a halved soft egg' },
+    ],
     items: [
       {
         name: 'Akira Shoyu Ramen',
@@ -122,35 +104,26 @@ export const menu = {
         name: 'Akira Spicy Miso Ramen',
         price: 349,
         desc: 'Handmade noodles in rich miso broth, fresh vegetables, choice of meat, and a bold spicy kick.',
-        badge: 'Regulars’ pick',
+        badge: 'Spicy',
         flagship: true,
       },
       {
-        name: 'Akira Tonkatsu',
+        name: 'Akira Tonkotsu',
         price: 369,
         desc: 'Rich, creamy tonkotsu broth with handmade noodles, tender pork, fresh vegetables, and perfectly cooked egg.',
       },
     ],
-    addons: {
-      label: 'Add to any ramen or donburi',
-      items: [
-        { name: 'Grilled Mushroom', price: 40 },
-        { name: 'Sausage (two quarter pcs)', price: 50 },
-        { name: 'Fish Cake (two pcs)', price: 50 },
-        { name: 'Chicken Yakitori (one skewer)', price: 105 },
-        { name: 'Pork Yakitori (one skewer)', price: 125 },
-        { name: 'Prawn Yakitori (one skewer)', price: 135 },
-      ],
-    },
   },
   plates: {
     label: 'Small plates',
     jp: '小皿',
-    note: 'The till says these sell as hard as the bowls — order two for the table.',
+    note: 'Order two for the table.',
     categories: [
       {
         name: 'Gyoza',
         jp: '餃子',
+        photo: '/dishes/gyoza.jpg',
+        photoAlt: 'Pan-fried gyoza topped with spring onion on a long black plate, with pickled ginger',
         desc: 'Pan-fried Japanese dumplings filled with savoury meat and vegetables, served with a tangy dipping sauce.',
         from: 180,
         items: [
@@ -159,10 +132,9 @@ export const menu = {
           {
             name: 'Cream Cheese Mushroom (five pcs)',
             price: 180,
-            note: 'Table favourite',
+            note: 'Vegetarian',
           },
         ],
-        addon: 'Add cheese or burnt garlic broth · ₹50',
       },
       {
         name: 'Yakitori',
@@ -179,6 +151,8 @@ export const menu = {
       {
         name: 'Karaage',
         jp: '唐揚げ',
+        photo: '/dishes/karaage.jpg',
+        photoAlt: 'A plate of crisp fried karaage handed across the pass',
         desc: 'Crispy Japanese fried chicken, golden and juicy, seasoned perfectly, served hot with a tangy dipping sauce.',
         from: 230,
         items: [
@@ -208,7 +182,7 @@ export const menu = {
           {
             name: 'Oren',
             price: 149,
-            desc: 'Signature sparkling citrus cooler with cherry blossom notes — orange, lemon and honey.',
+            desc: 'Signature sparkling citrus cooler with cherry blossom notes: orange, lemon and honey.',
           },
           {
             name: 'Sakura',
@@ -218,7 +192,7 @@ export const menu = {
           {
             name: 'Raimu Soda',
             price: 169,
-            desc: 'Japanese lime soda — sparkling, tangy, lightly sweet.',
+            desc: 'Japanese lime soda: sparkling, tangy, lightly sweet.',
           },
         ],
       },
@@ -245,47 +219,40 @@ export const menu = {
     ],
   },
   allergens:
-    'Please notify allergens before ordering — celery, lupin, mustard, molluscs, crustaceans, milk, sesame seeds, soya, nuts, peanuts, eggs, gluten.',
+    'Please tell us about allergens before ordering: celery, lupin, mustard, molluscs, crustaceans, milk, sesame seeds, soya, nuts, peanuts, eggs, gluten.',
 };
 
 export const community = {
-  eyebrow: 'コミュニティ',
+  kana: 'コミュニティ',
   heading: 'Built for the\nlate table',
   prose:
-    'AKIRA fills up after eight and empties out past midnight. Anime nights, birthdays that run long, the table of four that becomes six — the room does most of the programming itself, and Instagram is where it gets planned.',
+    'Paper lanterns, walls papered in Japanese posters, a hand-painted dragon and red stools at the tables. Most of the room fills after eight, and from Thursday to Saturday the kitchen keeps going until 1:30 am. New plates show up on Instagram first.',
   cta: {
     label: 'Follow @_simply_akira_',
     href: 'https://instagram.com/_simply_akira_',
   },
-  /* Flat tiles for v1 — swap each tile for a real <img> when photos land. */
+  /* First photo is the tall one in the mosaic. */
   tiles: [
-    { label: 'The bowl', tone: 'white' },
-    { label: 'Charcoal', tone: 'red' },
-    { label: 'The room', tone: 'ink' },
-    { label: 'Gyoza table', tone: 'ink' },
-    { label: 'Sakura', tone: 'white' },
-    { label: 'Late night', tone: 'red' },
+    { label: 'Small plates', photo: '/dishes/small-plates.jpg', alt: 'Dumplings on a black plate, picked up with wooden chopsticks, manga spines behind' },
+    { label: 'The dragon', photo: '/community/sakura.jpg', alt: 'A hand-painted red dragon on the wall with AKIRA written down its body' },
+    { label: 'The kitchen', photo: '/community/kitchen.jpg', alt: 'Knives on a magnetic strip in the AKIRA kitchen' },
+    { label: 'Red stools', photo: '/community/red-stools.jpg', alt: 'A bowl of ramen on a table beside a red stool' },
+    { label: 'After dark', photo: '/community/late-night.jpg', alt: 'A plate held in front of an AKIRA apron' },
   ],
 };
 
 export const partner = {
-  eyebrow: 'パートナー',
-  heading: 'Early, and\ngrowing fast',
+  kana: 'パートナー',
+  heading: 'Partner\nwith us',
   prose:
-    'AKIRA is a few weeks old and already runs a full weekend service on dine-in alone — no aggregators, no discounting, no paid marketing. We are opening conversations with operators and investors who know the Kolkata dining floor.',
-  /* Qualitative only. No revenue, no order counts — those live in the deck. */
-  stats: [
-    { word: 'Dine-in only', note: 'No aggregator revenue in the mix yet' },
-    { word: 'Weekend-led', note: 'Friday to Sunday carries the room' },
-    { word: 'Full-price', note: 'Growth without discounting' },
-  ],
+    'AKIRA opened in July 2026 and runs on dine-in alone, at full price. We are opening conversations with operators and investors who know the Kolkata dining floor.',
   cta: { label: 'Talk to us' },
 };
 
 export const visit = {
-  eyebrow: 'アクセス',
+  kana: 'アクセス',
   heading: 'Visit AKIRA',
-  lede: 'Walk-ins welcome. Large groups, call ahead — the room is small and the late tables go fast.',
+  lede: 'Walk-ins welcome. Large groups, call ahead: the room is small and the late tables go fast.',
 };
 
 export const footer = {

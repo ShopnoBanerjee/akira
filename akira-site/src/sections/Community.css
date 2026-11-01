@@ -1,69 +1,79 @@
-.community__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(36px, 6vw, 80px);
-  align-items: center;
+/* Heading and copy side by side across the top, photos full width below. */
+.community__head {
+  margin-bottom: clamp(32px, 4vw, 64px);
 }
-
-/* Solid white, not 0.9 alpha: blended 0.9-white on #326fb7 measures 4.50:1,
-   right on the AA line. Solid white is 5.13:1. */
-.community__body .t-body {
+.community__head .sec-head {
+  margin-bottom: clamp(24px, 2.4vw, 40px);
+}
+.community .sec-head__kana {
   color: var(--white);
 }
-.community__cta {
-  margin-top: 30px;
-}
-
-.community__tiles {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-.tile {
-  aspect-ratio: 1;
+/* The words on the left edge, the action answering from the right. */
+.community__body {
   display: flex;
   align-items: flex-end;
-  padding: 14px;
-  border: 2px solid rgba(255, 255, 255, 0.55);
-  overflow: hidden;
+  justify-content: space-between;
+  gap: 24px 48px;
 }
-.tile--white {
-  background: var(--white);
+.community__body .t-lead {
+  max-width: 62ch;
 }
-.tile--red {
-  background: var(--akira-red);
-  border-color: var(--akira-red);
-}
-.tile--ink {
-  background: var(--ink);
-  border-color: var(--ink);
-}
-.tile__label {
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 1px;
-  line-height: 1.2;
-  color: var(--white);
-}
-.tile--white .tile__label {
-  color: var(--ink);
+.community__cta {
+  flex: none;
 }
 
-/* When real photos land: <img class="tile__img" …> inside .tile */
+.community__mosaic {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  aspect-ratio: 16 / 9;
+}
+.tile {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  min-height: 0;
+}
+.tile:first-child {
+  grid-row: span 2;
+}
 .tile__img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-@media (max-width: 900px) {
-  .community__grid {
-    grid-template-columns: 1fr;
-  }
+/* Solid ink plate (the brand allows no gradients) keeps the label legible. */
+.tile__label {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  padding: 8px 14px;
+  background: var(--ink);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--white);
 }
-@media (max-width: 720px) {
-  .community__tiles {
-    grid-template-columns: repeat(2, 1fr);
+
+@media (max-width: 860px) {
+  .community__body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .community__mosaic {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    aspect-ratio: auto;
+  }
+  .tile {
+    aspect-ratio: 1;
+  }
+  .tile:first-child {
+    grid-row: auto;
+    grid-column: span 2;
+    aspect-ratio: 4 / 3;
   }
 }

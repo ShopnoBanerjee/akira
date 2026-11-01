@@ -67,7 +67,7 @@ export default function Nav() {
           ))}
         </nav>
 
-        <a className="pill pill--red nav__cta" href={nav.cta.href}>
+        <a className="pill pill--ink nav__cta" href={nav.cta.href}>
           {nav.cta.label}
         </a>
 
