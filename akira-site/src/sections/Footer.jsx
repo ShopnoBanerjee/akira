@@ -1,35 +1,43 @@
-import { footer, brand, nav } from '../content';
+import { footer, brand, nav, venue } from '../content';
 import './Footer.css';
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="wrap footer__inner">
-        {/* Wordmark, not the bowl mark — the stamp texture goes muddy below
-            ~200px, and the guideline reserves the full lockup for large use. */}
-        <a className="footer__brand" href="#top">
-          <span className="footer__wordmark">{brand.name}</span>
-          <span className="footer__kana jp" lang="ja" aria-hidden="true">
-            {brand.katakana}
-          </span>
+        {/* The full lockup, large: the size the guideline reserves it for. */}
+        <a className="footer__brand" href="#top" aria-label={`${brand.name}, back to top`}>
+          <img src="/akira-logo-white.svg" alt="" width="779" height="456" loading="lazy" />
         </a>
 
-        <nav className="footer__links" aria-label="Footer">
-          {nav.links.map((l) => (
-            <a key={l.href} href={l.href}>
-              {l.label}
+        <div className="footer__columns">
+          <nav className="footer__links" aria-label="Footer">
+            {nav.links.map((l) => (
+              <a key={l.href} href={l.href}>
+                {l.label}
+              </a>
+            ))}
+            <a href={nav.cta.href}>Visit</a>
+            <a
+              href={brand.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {brand.instagram}
             </a>
-          ))}
-          <a
-            href={brand.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {brand.instagram}
-          </a>
-        </nav>
+          </nav>
 
-        <p className="footer__line t-caption">{footer.line}</p>
+          <div className="footer__contact">
+            <p>
+              {venue.streetAddress}
+              <br />
+              {venue.city}
+            </p>
+            <a href={venue.phoneHref}>{venue.phone}</a>
+          </div>
+        </div>
+
+        <p className="footer__line">{footer.line}</p>
       </div>
     </footer>
   );

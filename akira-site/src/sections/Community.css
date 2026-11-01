@@ -1,21 +1,25 @@
 /* Heading and copy side by side across the top, photos full width below. */
 .community__head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(28px, 5vw, 80px);
-  align-items: end;
-  margin-bottom: clamp(32px, 4vw, 56px);
+  margin-bottom: clamp(32px, 4vw, 64px);
 }
 .community__head .sec-head {
-  margin-bottom: 0;
+  margin-bottom: clamp(24px, 2.4vw, 40px);
 }
-
-/* Solid white: 0.9-alpha white on #326fb7 measures 4.50:1, right on the AA line. */
-.community__body .t-body {
+.community .sec-head__kana {
   color: var(--white);
 }
+/* The words on the left edge, the action answering from the right. */
+.community__body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 48px;
+}
+.community__body .t-lead {
+  max-width: 62ch;
+}
 .community__cta {
-  margin-top: 26px;
+  flex: none;
 }
 
 .community__mosaic {
@@ -28,7 +32,6 @@
 .tile {
   position: relative;
   overflow: hidden;
-  border-radius: 14px;
   background: var(--ink);
   min-height: 0;
 }
@@ -42,24 +45,23 @@
   height: 100%;
   object-fit: cover;
 }
-/* Solid ink pill (the brand allows no gradients) keeps the label legible. */
+/* Solid ink plate (the brand allows no gradients) keeps the label legible. */
 .tile__label {
   position: absolute;
   z-index: 1;
-  left: 12px;
-  bottom: 12px;
-  padding: 6px 12px;
-  border-radius: 999px;
+  left: 0;
+  bottom: 0;
+  padding: 8px 14px;
   background: var(--ink);
   font-weight: 700;
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--white);
 }
 
 @media (max-width: 860px) {
-  .community__head {
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
+  .community__body {
+    flex-direction: column;
+    align-items: flex-start;
   }
   .community__mosaic {
     grid-template-columns: 1fr 1fr;

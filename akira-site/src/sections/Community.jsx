@@ -7,9 +7,9 @@ export default function Community() {
     <section className="section section--blue community" id="community">
       <div className="wrap">
         <div className="community__head">
-          <SectionHead eyebrow={community.eyebrow} heading={community.heading} tone="light" />
-          <div className="community__body">
-            <p className="t-body">{community.prose}</p>
+          <SectionHead kana={community.kana} heading={community.heading} />
+          <div className="community__body" data-rise="" style={{ '--i': 1 }}>
+            <p className="t-lead">{community.prose}</p>
             <a
               className="pill pill--white community__cta"
               href={community.cta.href}
@@ -23,8 +23,8 @@ export default function Community() {
 
         {/* One tall photo, four beside it. */}
         <ul className="community__mosaic">
-          {community.tiles.map((t) => (
-            <li key={t.label} className="tile">
+          {community.tiles.map((t, i) => (
+            <li key={t.label} className="tile" data-rise="" style={{ '--i': i }}>
               <img
                 className="tile__img"
                 src={t.photo}

@@ -7,7 +7,8 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   font-weight: 400;
-  line-height: 1.7;
+  font-size: var(--fs-body);
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -28,84 +29,70 @@ a { text-underline-offset: 0.2em; }
 /* Prices and times line up in columns */
 .tnum { font-variant-numeric: tabular-nums; }
 
-/* ---- type scale (per brand typography table) ---- */
+/* ---- type scale ---- */
 .t-display {
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -0.5px;
-  line-height: 1.05;
-  font-size: clamp(34px, 4.5vw, 58px);
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  font-size: var(--fs-display);
 }
-.t-eyebrow {                       /* katakana section motif */
-  font-family: var(--font-jp);
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 6px;
-  line-height: 1;
-  display: block;
-}
-.t-card-title {
+.t-sub {
   font-weight: 900;
-  text-transform: uppercase;
-  font-size: clamp(20px, 2.2vw, 22px);
-  letter-spacing: 0.5px;
-  line-height: 1.15;
+  font-size: var(--fs-sub);
+  letter-spacing: -0.01em;
+  line-height: 1.12;
 }
-.t-body {
-  font-weight: 400;
-  font-size: clamp(16px, 1.35vw, 18px);
-  line-height: 1.75;
-  color: var(--text-body);
-}
-.t-label {
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 1px;
-  line-height: 1;
-}
-/* Content labels: sentence case at a readable size, never tiny tracked caps. */
-.t-tag {
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 1.3;
-}
-.t-caption {
-  font-weight: 500;
-  font-size: 13px;
+.t-lead {
+  font-size: var(--fs-lead);
   line-height: 1.5;
-  color: var(--text-muted);
 }
 .jp { font-family: var(--font-jp); }
 
 /* ---- layout helpers ---- */
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
 .section { padding-block: var(--section-y); scroll-margin-top: var(--nav-h); }
-.section--paper { background: var(--paper); }
 .section--blue  { background: var(--akira-blue); color: var(--white); }
-.section--ink   { background: var(--ink); color: var(--white); }
 
-/* section-header motif: katakana eyebrow -> 900 uppercase heading -> 72x4 rule */
-.sec-head { margin-bottom: clamp(36px, 4.5vw, 60px); }
-.sec-head__eyebrow { color: var(--akira-red); margin-bottom: 18px; }
-.sec-head__eyebrow--blue { color: var(--akira-blue); }
-.sec-head__eyebrow--light { color: var(--white); }
-.sec-head__rule { width: 72px; height: 4px; background: var(--ink); margin-top: 22px; }
-.sec-head__rule--light { background: var(--white); }
-.sec-head__lede { margin-top: 22px; max-width: 62ch; }
+.sec-head { margin-bottom: clamp(36px, 4vw, 64px); }
+.sec-head__row { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.sec-head__kana { flex: none; font-size: var(--fs-lead); font-weight: 700; color: var(--akira-blue); padding-top: 0.3em; }
+.sec-head__lede { margin-top: 20px; max-width: 46ch; }
+@media (max-width: 720px) {
+  .sec-head__row { flex-direction: column; gap: 8px; }
+  .sec-head__kana { padding-top: 0; }
+}
 
-/* ---- pills / buttons ---- */
+/* The field above runs down into noodles: the same wave as the intro, as a repeating mask. */
+.has-tails { position: relative; padding-top: calc(var(--tails-h) + clamp(32px, 4vw, 64px)); }
+.tails {
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--tails-h);
+  background: currentColor;
+  -webkit-mask: url(/noodle-tails.svg) left top / auto 100% repeat-x;
+  mask: url(/noodle-tails.svg) left top / auto 100% repeat-x;
+  transform-origin: top;
+  pointer-events: none;
+}
+
+/* ---- open now ---- */
+.open-now { display: flex; align-items: flex-start; gap: 10px; font-size: var(--fs-lead); font-weight: 900; }
+.open-now__dot { flex: none; margin-top: 0.45em; width: 12px; height: 12px; border-radius: 50%; border: 3px solid currentColor; }
+.open-now--open .open-now__dot { background: currentColor; }
+
+/* ---- pills / buttons: 19px bold, the size white needs to read on brand red ---- */
 .pill {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 15px 30px; border-radius: 999px; border: 2px solid transparent;
-  font-weight: 900; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;
+  padding: 14px 30px; border-radius: 999px; border: 2px solid transparent;
+  font-weight: 900; font-size: 19px; line-height: 1.2;
   transition: transform 160ms var(--ease-out), background-color 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 /* Press feedback everywhere; hover only where a real pointer hovers. */
 .pill:active { transform: scale(0.97); }
 .pill--red     { background: var(--akira-red); color: var(--white); border-color: var(--akira-red); }
 .pill--ink     { background: transparent; color: var(--ink); border-color: var(--ink); }
-.pill--white   { background: var(--white); color: var(--akira-blue); border-color: var(--white); }
+.pill--white   { background: var(--white); color: var(--ink); border-color: var(--white); }
 .pill--outline-white { background: transparent; color: var(--white); border-color: var(--white); }
 @media (hover: hover) and (pointer: fine) {
   .pill--red:hover { background: var(--ink); border-color: var(--ink); }
@@ -114,15 +101,13 @@ a { text-underline-offset: 0.2em; }
   .pill--outline-white:hover { background: var(--white); color: var(--ink); }
 }
 
-/* ---- scroll reveal ----
-   Photographs only — a wipe up from the bottom edge, not an identical fade
-   on every block. Text is never hidden waiting for an observer. */
-.reveal {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 700ms var(--ease-in-out);
+/* ---- arrivals: see useRise. Text and pictures rise; the noodles drop. ---- */
+.rising [data-rise] {
+  transition: opacity 500ms var(--ease-out), transform 700ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
 }
-.reveal:not(.reveal-visible) { clip-path: inset(0 0 100% 0); }
-.reveal-visible { clip-path: inset(0 0 0 0); }
+.rising [data-rise]:not(.risen) { opacity: 0; transform: translateY(24px); }
+.rising .tails[data-rise]:not(.risen) { opacity: 1; transform: scaleY(0.2); }
 
 /* ---- reduced motion: non-negotiable ---- */
 @media (prefers-reduced-motion: reduce) {
@@ -133,5 +118,4 @@ a { text-underline-offset: 0.2em; }
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal, .reveal:not(.reveal-visible) { clip-path: none; }
 }

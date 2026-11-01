@@ -1,25 +1,26 @@
 import Nav from './sections/Nav';
 import Hero from './sections/Hero';
-import Flavours from './sections/Flavours';
-import Story from './sections/Story';
 import Menu from './sections/Menu';
+import Story from './sections/Story';
 import Community from './sections/Community';
-import Partner from './sections/Partner';
 import Visit from './sections/Visit';
+import Partner from './sections/Partner';
 import Footer from './sections/Footer';
+import { useRise } from './hooks/useRise';
 
 export default function App() {
+  useRise();
+
   return (
     <>
       <Nav />
       <main>
         <Hero />
-        <Flavours />
-        <Story />
         <Menu />
+        <Story />
         <Community />
-        <Partner />
         <Visit />
+        <Partner />
       </main>
       <Footer />
     </>

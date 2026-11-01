@@ -1,94 +1,90 @@
+/* Brand red ground: every word here is bold and 19px or larger, which is what
+   white needs on this red (4:1) to clear the large-text contrast line. */
+.visit {
+  background: var(--akira-red);
+  color: var(--white);
+}
 .visit__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(36px, 6vw, 76px);
-  align-items: start;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(36px, 5vw, 96px);
+  align-items: stretch;
 }
 
-.visit__details {
-  display: grid;
-  gap: 30px;
+.visit .sec-head {
+  margin-bottom: 32px;
 }
-
-.visit__row {
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
+.visit .sec-head__kana {
+  color: var(--white);
 }
-.visit__icon {
-  color: var(--akira-red);
-  flex: none;
-  margin-top: 2px;
+.visit .t-lead {
+  color: var(--white);
+  font-weight: 700;
 }
-.visit__row-label {
-  color: var(--akira-blue);
-  margin-bottom: 8px;
-}
-.visit__days {
-  display: inline-block;
-  min-width: 12.5em;
-  font-weight: 900;
-  color: var(--ink);
-}
-.visit__time {
-  color: var(--text-body);
+.visit__address {
+  font-style: normal;
 }
 .visit__phone {
-  border-bottom: 2px solid var(--akira-red);
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+}
+
+.visit__open {
+  margin-top: 32px;
+}
+.visit__hours {
+  margin-top: 12px;
+  font-size: var(--fs-lead);
+  font-weight: 700;
+}
+.visit__day {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 24px;
+  padding: 8px 12px;
+  margin-inline: -12px;
+}
+.visit__day dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+/* Today's row, by a plate of ink rather than a line. */
+.visit__day--now {
+  background: var(--ink);
 }
 
 .visit__ctas {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 4px;
+  margin-top: 32px;
 }
 
-/* ---- embedded Google Map, in the brand's offset-shadow frame ---- */
 .visit__map {
-  position: relative;
-  aspect-ratio: 4 / 3;
+  min-height: 480px;
   background: var(--paper);
-  border: 2px solid var(--ink);
-  border-radius: 14px;
-  box-shadow: 10px 10px 0 var(--akira-blue);
-  overflow: hidden;
 }
 .visit__map-frame {
   width: 100%;
   height: 100%;
+  min-height: 480px;
   border: 0;
   display: block;
-}
-.visit__map-label {
-  position: absolute;
-  left: 18px;
-  bottom: 18px;
-  background: var(--white);
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  padding: 9px 16px;
-  font-size: 11px;
-  color: var(--ink);
-  transition: transform 160ms ease-out;
-}
-.visit__map-label:hover {
-  transform: translateY(-2px);
 }
 
 @media (max-width: 900px) {
   .visit__grid {
     grid-template-columns: minmax(0, 1fr);
   }
+  .visit__map,
+  .visit__map-frame {
+    min-height: 360px;
+  }
 }
 @media (max-width: 720px) {
-  .visit__days {
-    display: block;
-    min-width: 0;
-  }
-  .visit__map {
-    box-shadow: 8px 8px 0 var(--akira-blue);
-  }
   .visit__ctas .pill {
     flex: 1 1 auto;
   }

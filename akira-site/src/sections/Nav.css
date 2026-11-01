@@ -39,10 +39,8 @@
 }
 .nav__link {
   position: relative;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 16px;
   color: var(--ink);
   padding-block: 6px;
 }
@@ -64,8 +62,8 @@
 }
 
 .nav__cta {
-  padding: 11px 22px;
-  font-size: 13px;
+  padding: 9px 22px;
+  font-size: 16px;
 }
 
 /* ---- mobile ---- */
@@ -119,10 +117,8 @@
 }
 .nav__sheet a:not(.pill) {
   padding: 14px 0;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 15px;
-  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 20px;
 }
 .nav__sheet .pill {
   margin-top: 16px;

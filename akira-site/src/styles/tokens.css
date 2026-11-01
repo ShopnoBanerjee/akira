@@ -6,12 +6,8 @@
 
   /* Derived neutrals — stay within this set */
   --white: #ffffff;
-  --paper: #f7f5f2;           /* alternate section ground */
-  --text-body: #4a4547;       /* body copy on white */
-  --text-muted: #6e6a6b;      /* captions, footnotes */
-  --text-muted-dark: #b9b5b6; /* muted on ink */
+  --paper: #f2f2f2;           /* one tone step off white */
   --blue-soft: #7aa5d8;       /* blue accents on ink */
-  --line: #ddd8d3;            /* hairline borders */
 
   --font-sans: 'Noto Sans', 'Segoe UI', sans-serif;
   --font-jp: 'Noto Sans JP', sans-serif;
@@ -21,8 +17,29 @@
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   /* Layout */
-  --wrap: 1120px;
-  --gutter: clamp(20px, 5vw, 56px);
-  --section-y: clamp(72px, 9vw, 128px);
+  --wrap: 1600px;
+  --gutter: clamp(20px, 3vw, 48px);
+  --section-y: clamp(72px, 9vw, 160px);
   --nav-h: 68px;
+  --marquee-h: 64px;
+  --tails-h: clamp(130px, 15vw, 240px);
+
+  /* Type: five sizes do all the work */
+  --fs-hero: 15.4vw;
+  --fs-display: 9.2vw;
+  --fs-sub: clamp(26px, 2.5vw, 36px);
+  --fs-lead: 20px;
+  --fs-body: 18px;
+  --fs-small: 15px;
+}
+
+@media (min-width: 861px) {
+  :root {
+    --fs-hero: min(6.6vw, 120px);
+  }
+}
+@media (min-width: 721px) {
+  :root {
+    --fs-display: clamp(56px, 6vw, 96px);
+  }
 }

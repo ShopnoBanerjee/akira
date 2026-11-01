@@ -1,56 +1,36 @@
+.partner {
+  background: var(--white);
+  padding-bottom: var(--section-y);
+  scroll-margin-top: var(--nav-h);
+}
 .partner__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(40px, 6vw, 96px);
-  align-items: end;
+  gap: clamp(28px, 5vw, 96px);
+  align-items: start;
 }
-
-.partner__prose {
-  color: rgba(255, 255, 255, 0.86);
+.partner .sec-head {
+  margin-bottom: 0;
+}
+.partner .t-lead {
   max-width: 52ch;
-  margin-top: -12px;
 }
-
-.partner__cta {
-  margin-top: clamp(28px, 3.5vw, 40px);
+.partner__contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+  margin-top: 28px;
 }
 .partner__email {
-  margin-top: 14px;
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--blue-soft);
-}
-
-.partner__facts {
-  display: grid;
-  gap: clamp(28px, 3.4vw, 44px);
-  margin: 0;
-}
-.fact {
-  margin: 0;
-}
-.fact__word {
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: clamp(32px, 4vw, 54px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--white);
-}
-/* The first fact carries the brand red; the rest stay white. */
-.fact:first-child .fact__word {
-  color: var(--akira-red);
-}
-.fact__note {
-  margin: 10px 0 0;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--text-muted-dark);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
 
 @media (max-width: 860px) {
   .partner__grid {
     grid-template-columns: minmax(0, 1fr);
-    align-items: start;
   }
 }
