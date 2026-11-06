@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ee3345" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <title>Blog | AKIRA, Japanese ramen restaurant in Kolkata</title>
+    <meta
+      name="description"
+      content="Notes from the counter at AKIRA: ramen styles, how to eat a bowl, and what to order for the table."
+    />
+    <link rel="canonical" href="https://www.simplyakira.com/blog/" />
+
+    <!-- Where the restaurant is: 34 Naskarpara Road, Haltu/Garfa, Kasba, Kolkata 700078 -->
+    <meta name="geo.region" content="IN-WB" />
+    <meta name="geo.placename" content="Kolkata" />
+    <meta name="geo.position" content="22.5023364;88.3852304" />
+    <meta name="ICBM" content="22.5023364, 88.3852304" />
+
+    <!-- Day or night, before the first paint: ?theme= in the address, else the visitor's choice, else a dark device, else after 7 pm in Kolkata. -->
+    <script>(function(){var t=null,q=/[?&]theme=(night|day)/.exec(location.search);try{t=localStorage.getItem('akira-theme')}catch(e){}if(q)t=q[1];var h=+new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',hour:'numeric',hourCycle:'h23'}).format(new Date());var n=t?t==='night':(matchMedia('(prefers-color-scheme: dark)').matches||h>=19||h<6);document.documentElement.dataset.theme=n?'night':'day';})();</script>
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AKIRA" />
+    <meta property="og:url" content="https://www.simplyakira.com/blog/" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:image:alt" content="The AKIRA ramen-bowl logo on white" />
+    <meta property="og:title" content="Blog | AKIRA, Japanese ramen restaurant in Kolkata" />
+    <meta property="og:description" content="Ramen styles, how to eat a bowl, and what to order for the table." />
+    <meta property="og:image" content="https://www.simplyakira.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Blog | AKIRA, Japanese ramen restaurant in Kolkata" />
+    <meta name="twitter:description" content="Ramen styles, how to eat a bowl, and what to order for the table." />
+    <meta name="twitter:image" content="https://www.simplyakira.com/og-image.jpg" />
+    <meta name="twitter:image:alt" content="The AKIRA ramen-bowl logo on white" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Noto+Sans+JP:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!--schema-->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/blog/main.jsx"></script>
+  </body>
+</html>

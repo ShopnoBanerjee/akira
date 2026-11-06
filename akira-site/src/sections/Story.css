@@ -1,5 +1,5 @@
 .story {
-  background: var(--white);
+  background: var(--ground);
 }
 
 .story__grid {
@@ -34,7 +34,7 @@
 .founder__role {
   margin-top: 8px;
   font-weight: 700;
-  color: var(--akira-blue);
+  color: var(--blue-text);
 }
 .founder__bio {
   margin-top: 10px;

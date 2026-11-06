@@ -2,8 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--white);
-  border-bottom: 2px solid var(--ink);
+  background: var(--ground);
+  border-bottom: 2px solid var(--text);
 }
 
 .nav__inner {
@@ -24,7 +24,7 @@
   text-transform: uppercase;
   font-size: 22px;
   letter-spacing: 2px;
-  color: var(--ink);
+  color: var(--text);
 }
 .nav__kana {
   font-weight: 700;
@@ -41,7 +41,7 @@
   position: relative;
   font-weight: 700;
   font-size: 16px;
-  color: var(--ink);
+  color: var(--text);
   padding-block: 6px;
 }
 .nav__link::after {
@@ -80,7 +80,7 @@
   display: block;
   width: 24px;
   height: 3px;
-  background: var(--ink);
+  background: var(--text);
   transition: transform 200ms ease-out, opacity 150ms linear;
 }
 .nav__bars {
@@ -113,7 +113,7 @@
   flex-direction: column;
   gap: 4px;
   padding: 12px var(--gutter) 24px;
-  border-top: 2px solid var(--ink);
+  border-top: 2px solid var(--text);
 }
 .nav__sheet a:not(.pill) {
   padding: 14px 0;
@@ -126,6 +126,9 @@
 }
 
 @media (max-width: 860px) {
+  .nav__night {
+    margin-left: auto;
+  }
   .nav__links,
   .nav__cta {
     display: none;

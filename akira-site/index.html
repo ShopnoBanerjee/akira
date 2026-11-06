@@ -4,40 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ee3345" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
 
-    <title>AKIRA — Handmade Ramen in Kolkata</title>
+    <title>AKIRA | Japanese Ramen Restaurant in Kolkata</title>
     <meta
       name="description"
-      content="Handmade ramen, charcoal yakitori and gyoza in Kolkata. Shoyu, spicy miso and tonkotsu bowls from ₹329. Open late, seven days."
+      content="Japanese ramen restaurant in Kolkata: shoyu, spicy miso and tonkotsu from ₹329, gyoza and charcoal yakitori. Open till 1:30 am Thu–Sat."
     />
-    <link rel="canonical" href="https://simplyakira.com/" />
+    <link rel="canonical" href="https://www.simplyakira.com/" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/og-image.png" />
+    <!-- Where the restaurant is: 34 Naskarpara Road, Haltu/Garfa, Kasba, Kolkata 700078 -->
+    <meta name="geo.region" content="IN-WB" />
+    <meta name="geo.placename" content="Kolkata" />
+    <meta name="geo.position" content="22.5023364;88.3852304" />
+    <meta name="ICBM" content="22.5023364, 88.3852304" />
+
+    <!-- Day or night, before the first paint: ?theme= in the address, else the visitor's choice, else a dark device, else after 7 pm in Kolkata. -->
+    <script>(function(){var t=null,q=/[?&]theme=(night|day)/.exec(location.search);try{t=localStorage.getItem('akira-theme')}catch(e){}if(q)t=q[1];var h=+new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',hour:'numeric',hourCycle:'h23'}).format(new Date());var n=t?t==='night':(matchMedia('(prefers-color-scheme: dark)').matches||h>=19||h<6);document.documentElement.dataset.theme=n?'night':'day';})();</script>
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="AKIRA" />
+    <meta property="og:url" content="https://www.simplyakira.com/" />
+    <meta property="og:locale" content="en_IN" />
     <meta
       property="og:title"
-      content="AKIRA — Handmade Ramen in Kolkata"
+      content="AKIRA | Japanese Ramen Restaurant in Kolkata"
     />
     <meta
       property="og:description"
-      content="Handmade ramen, charcoal yakitori and gyoza in Kolkata. Open late, seven days."
+      content="Japanese ramen restaurant in Kasba, Kolkata, off Garfa Main Road. Open till 1:30 am Thursday to Saturday."
     />
-    <meta property="og:image" content="https://simplyakira.com/og-image.png" />
+    <meta property="og:image" content="https://www.simplyakira.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="The AKIRA ramen-bowl logo on white" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="AKIRA — Handmade Ramen in Kolkata"
+      content="AKIRA | Japanese Ramen Restaurant in Kolkata"
     />
     <meta
       name="twitter:description"
-      content="Handmade ramen, charcoal yakitori and gyoza in Kolkata. Open late, seven days."
+      content="Japanese ramen restaurant in Kasba, Kolkata, off Garfa Main Road. Open till 1:30 am Thursday to Saturday."
     />
-    <meta name="twitter:image" content="https://simplyakira.com/og-image.png" />
+    <meta name="twitter:image" content="https://www.simplyakira.com/og-image.jpg" />
+    <meta name="twitter:image:alt" content="The AKIRA ramen-bowl logo on white" />
 
     <!-- Fonts: Noto Sans (brand typeface) + Noto Sans JP for katakana -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -47,46 +65,7 @@
       rel="stylesheet"
     />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "name": "AKIRA",
-        "alternateName": "アキラ",
-        "description": "Handmade ramen, charcoal yakitori and gyoza in Kolkata.",
-        "servesCuisine": "Japanese",
-        "priceRange": "₹₹",
-        "currenciesAccepted": "INR",
-        "paymentAccepted": "UPI, Cash",
-        "image": "https://simplyakira.com/og-image.png",
-        "url": "https://simplyakira.com/",
-        "telephone": "+919163677724",
-        "email": "management@simplyakira.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "34 Naskarpara Road",
-          "addressLocality": "Kolkata",
-          "addressRegion": "West Bengal",
-          "postalCode": "700078",
-          "addressCountry": "IN"
-        },
-        "sameAs": ["https://instagram.com/_simply_akira_"],
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday"],
-            "opens": "16:00",
-            "closes": "00:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Thursday", "Friday", "Saturday"],
-            "opens": "17:00",
-            "closes": "01:30"
-          }
-        ]
-      }
-    </script>
+    <!--schema-->
 
     <!-- Intro: painted from the HTML itself, before any JS, on every visit.
          The red screen is cut into the wavy noodles of the logo, then slurped away.

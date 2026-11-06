@@ -1,5 +1,5 @@
 .menu {
-  background: var(--white);
+  background: var(--ground);
   scroll-margin-top: var(--nav-h);
 }
 
@@ -13,7 +13,7 @@
 .menu__group-kana {
   font-size: var(--fs-lead);
   font-weight: 700;
-  color: var(--akira-blue);
+  color: var(--kana);
   white-space: nowrap;
 }
 .menu__group-head .t-sub {
@@ -23,7 +23,7 @@
 .menu__photo {
   margin: 0;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--deep);
 }
 .menu__photo img {
   width: 100%;
@@ -37,7 +37,7 @@
   font-size: var(--fs-small);
   font-weight: 700;
   letter-spacing: 0;
-  color: var(--akira-blue);
+  color: var(--blue-text);
   white-space: nowrap;
 }
 
@@ -129,7 +129,7 @@
 .menu__drinks {
   margin-top: clamp(72px, 9vw, 150px);
   padding-block: clamp(64px, 7vw, 120px);
-  background: var(--ink);
+  background: var(--deep);
   color: var(--white);
 }
 .menu__drinks .menu__group-kana {

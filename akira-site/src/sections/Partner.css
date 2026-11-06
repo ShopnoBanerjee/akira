@@ -1,5 +1,5 @@
 .partner {
-  background: var(--white);
+  background: var(--ground);
   padding-bottom: var(--section-y);
   scroll-margin-top: var(--nav-h);
 }

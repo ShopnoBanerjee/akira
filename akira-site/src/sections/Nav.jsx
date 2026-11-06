@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
 import { nav, brand } from '../content';
+import NightSwitch from '../components/NightSwitch';
 import './Nav.css';
 
-export default function Nav() {
+/* Links carry the home path, so they work from the blog too; #menu → menu. */
+const sectionId = (href) => href.split('#')[1];
+
+export default function Nav({ current = '' }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('');
 
   /* Highlight the section currently under the nav bar. */
   useEffect(() => {
-    const ids = nav.links.map((l) => l.href.slice(1));
+    const ids = nav.links.map((l) => sectionId(l.href)).filter(Boolean);
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean);
@@ -40,10 +44,13 @@ export default function Nav() {
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
+  const isActive = (l) =>
+    (current && l.href.includes(current)) || (active !== '' && active === sectionId(l.href));
+
   return (
     <header className="nav">
       <div className="nav__inner wrap">
-        <a className="nav__brand" href="#top" onClick={() => setOpen(false)}>
+        <a className="nav__brand" href="/#top" onClick={() => setOpen(false)}>
           <span className="nav__wordmark">{brand.name}</span>
           <span className="nav__kana jp" lang="ja" aria-hidden="true">
             {brand.katakana}
@@ -56,16 +63,16 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               className={
-                active === l.href.slice(1)
-                  ? 'nav__link nav__link--active'
-                  : 'nav__link'
+                isActive(l) ? 'nav__link nav__link--active' : 'nav__link'
               }
-              aria-current={active === l.href.slice(1) ? 'true' : undefined}
+              aria-current={isActive(l) ? 'page' : undefined}
             >
               {l.label}
             </a>
           ))}
         </nav>
+
+        <NightSwitch className="nav__night" />
 
         <a className="pill pill--ink nav__cta" href={nav.cta.href}>
           {nav.cta.label}

@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="wrap footer__inner">
         {/* The full lockup, large: the size the guideline reserves it for. */}
-        <a className="footer__brand" href="#top" aria-label={`${brand.name}, back to top`}>
+        <a className="footer__brand" href="/#top" aria-label={`${brand.name}, back to top`}>
           <img src="/akira-logo-white.svg" alt="" width="779" height="456" loading="lazy" />
         </a>
 

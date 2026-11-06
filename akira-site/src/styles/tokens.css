@@ -9,6 +9,15 @@
   --paper: #f2f2f2;           /* one tone step off white */
   --blue-soft: #7aa5d8;       /* blue accents on ink */
 
+  /* Roles. Components use these, so night mode only has to remap them. */
+  --ground: var(--white);     /* the page */
+  --text: var(--ink);         /* running text and headings */
+  --surface: var(--paper);    /* a step off the ground */
+  --surface-hover: #e9e9e9;
+  --deep: var(--ink);         /* the darkest fields: footer, drinks, plates */
+  --blue-text: var(--akira-blue);
+  --kana: var(--akira-blue);  /* section katakana */
+
   --font-sans: 'Noto Sans', 'Segoe UI', sans-serif;
   --font-jp: 'Noto Sans JP', sans-serif;
 
@@ -31,6 +40,18 @@
   --fs-lead: 20px;
   --fs-body: 18px;
   --fs-small: 15px;
+}
+
+/* Night: the page goes dark and the red and blue fields read like the lit sign boxes outside. */
+:root[data-theme='night'] {
+  color-scheme: dark;
+  --ground: var(--ink);
+  --text: #f7f2f2;
+  --surface: #2f292a;
+  --surface-hover: #3b3435;
+  --deep: #110e0f;
+  --blue-text: var(--blue-soft);
+  --kana: var(--akira-red);   /* neon red; bold 20px keeps it at large-text contrast */
 }
 
 @media (min-width: 861px) {

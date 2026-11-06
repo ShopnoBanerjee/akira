@@ -53,7 +53,7 @@
 }
 /* Today's row, by a plate of ink rather than a line. */
 .visit__day--now {
-  background: var(--ink);
+  background: var(--deep);
 }
 
 .visit__ctas {
@@ -65,7 +65,7 @@
 
 .visit__map {
   min-height: 480px;
-  background: var(--paper);
+  background: var(--surface);
 }
 .visit__map-frame {
   width: 100%;

@@ -8,6 +8,7 @@
 
 export const venue = {
   streetAddress: '34 Naskarpara Road',
+  area: 'Kasba, off Garfa Main Road',
   city: 'Kolkata 700078',
   phone: '91636 77724',
   phoneHref: 'tel:+919163677724',
@@ -30,16 +31,17 @@ export const brand = {
 
 export const nav = {
   links: [
-    { label: 'Menu', href: '#menu' },
-    { label: 'Story', href: '#story' },
-    { label: 'Community', href: '#community' },
+    { label: 'Menu', href: '/#menu' },
+    { label: 'Story', href: '/#story' },
+    { label: 'Community', href: '/#community' },
+    { label: 'Blog', href: '/blog/' },
   ],
-  cta: { label: 'Visit us', href: '#visit' },
+  cta: { label: 'Visit us', href: '/#visit' },
 };
 
 export const hero = {
   title: 'Handmade ramen',
-  lede: 'A ramen bar in South Kolkata: shoyu, spicy miso and tonkotsu bowls from ₹329, and skewers off the charcoal.',
+  lede: 'A Japanese ramen bar in Kasba, South Kolkata: shoyu, spicy miso and tonkotsu bowls from ₹329, and skewers off the charcoal.',
   photoAlt:
     'The AKIRA street front at night: lit sign boxes of a ramen bowl, a daruma, Godzilla and 麺道 above the AKIRA fascia',
   ctas: {
@@ -57,6 +59,12 @@ export const marquee = [
   { en: 'KARAAGE', jp: '唐揚げ' },
   { en: 'DORA CAKE', jp: 'どら焼き' },
   { en: 'OPEN LATE', jp: '深夜まで' },
+];
+
+/* Night mode adds these to the band, up front. */
+export const marqueeNight = [
+  { en: 'NIGHT CRAWLERS WELCOME', jp: '夜更かし歓迎' },
+  { en: 'OPEN TILL 1:30 AM THU–SAT', jp: '木〜土 深夜1時半まで' },
 ];
 
 export const story = {
@@ -252,7 +260,7 @@ export const partner = {
 export const visit = {
   kana: 'アクセス',
   heading: 'Visit AKIRA',
-  lede: 'Walk-ins welcome. Large groups, call ahead: the room is small and the late tables go fast.',
+  lede: 'In Kasba, just off Garfa Main Road. Walk-ins welcome; for large groups, call ahead: the room is small and the late tables go fast.',
 };
 
 export const footer = {

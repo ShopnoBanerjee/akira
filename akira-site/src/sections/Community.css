@@ -32,7 +32,7 @@
 .tile {
   position: relative;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--deep);
   min-height: 0;
 }
 .tile:first-child {
@@ -52,7 +52,7 @@
   left: 0;
   bottom: 0;
   padding: 8px 14px;
-  background: var(--ink);
+  background: var(--deep);
   font-weight: 700;
   font-size: var(--fs-small);
   color: var(--white);

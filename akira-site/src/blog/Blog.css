@@ -1,0 +1,254 @@
+/* ---- index header: a red field that runs down into the noodles ---- */
+.blog-head {
+  background: var(--akira-red);
+  color: var(--white);
+  padding-block: clamp(56px, 7vw, 112px) clamp(32px, 3vw, 48px);
+}
+.blog-head__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: end;
+}
+.blog-head__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--deep);
+}
+.blog-head__cta {
+  margin-top: 28px;
+}
+.blog-head .sec-head__kana {
+  color: var(--white);
+}
+/* White on this red needs bold 19px or more to clear the large-text contrast line. */
+.blog-head__lede {
+  margin-top: 20px;
+  max-width: 46ch;
+  font-weight: 700;
+}
+
+.blog-meta {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--blue-text);
+}
+
+/* ---- the newest post, large ---- */
+.blog-missing {
+  margin-bottom: 32px;
+  font-weight: 700;
+}
+.post-lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: center;
+}
+.post-lead__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--deep);
+}
+.post-lead__title {
+  font-size: min(var(--fs-display), 64px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.post-lead .blog-meta {
+  margin-top: 12px;
+}
+.post-lead .pill {
+  margin-top: 28px;
+}
+
+/* ---- the rest, as rows: words on the left edge, the picture answering on the right ---- */
+.post-rows {
+  display: grid;
+  gap: clamp(28px, 3vw, 48px);
+  margin-top: clamp(56px, 7vw, 120px);
+}
+.post-row__link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(140px, 22vw, 320px);
+  gap: clamp(20px, 3vw, 48px);
+  align-items: center;
+  padding: clamp(20px, 2.4vw, 32px);
+  background: var(--surface);
+  transition: background-color 160ms ease;
+}
+.post-row__words p:not(.blog-meta) {
+  margin-block: 10px 8px;
+  max-width: 56ch;
+}
+.post-row__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--deep);
+}
+
+/* Hover only where a real pointer hovers; press everywhere. */
+.post-lead:active .pill,
+.post-row__link:active {
+  transform: scale(0.99);
+}
+@media (hover: hover) and (pointer: fine) {
+  .post-row__link:hover {
+    background: var(--surface-hover);
+  }
+  .post-lead:hover .post-lead__title,
+  .post-row__link:hover .t-sub {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.12em;
+  }
+  .post-lead:hover .pill--red {
+    background: var(--text);
+    color: var(--ground);
+    border-color: var(--text);
+  }
+}
+
+.blog-index {
+  background: var(--ground);
+  padding-bottom: var(--section-y);
+}
+
+/* ---- a single post ---- */
+.post {
+  padding-top: clamp(32px, 4vw, 64px);
+}
+/* One centred column for the title and the words, so the margins match. */
+.post__column {
+  max-width: calc(880px + 2 * var(--gutter));
+}
+.post__back {
+  align-self: center;
+  margin-left: 8px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+.post__head {
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+.post__title {
+  font-size: var(--fs-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  margin-bottom: 20px;
+}
+.post__head .t-lead {
+  max-width: 46ch;
+  margin-bottom: 16px;
+}
+
+.post__photo {
+  margin: 0;
+  background: var(--deep);
+}
+/* The post's picture settles slowly as the page opens. */
+.post__photo {
+  overflow: hidden;
+}
+.post__photo img {
+  animation: hero-drift 16s var(--ease-out) both;
+  width: 100%;
+  height: auto;
+  max-height: 78svh;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.post__body {
+  margin-top: clamp(40px, 5vw, 80px);
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+}
+.post__body > * + * {
+  margin-top: 20px;
+}
+.post__body h2 {
+  margin-top: clamp(36px, 4vw, 56px);
+}
+.post__body ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+.post__inline {
+  margin-block: clamp(32px, 4vw, 56px);
+}
+.post__inline img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--deep);
+}
+.post__body a {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: var(--akira-red);
+}
+@media (hover: hover) and (pointer: fine) {
+  .post__body a:hover {
+    color: var(--akira-red);
+  }
+}
+.post__body li::marker {
+  color: var(--akira-red);
+}
+
+.post__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-block: clamp(48px, 6vw, 96px) var(--section-y);
+}
+
+.post-more {
+  background: var(--surface);
+  padding-block: var(--section-y);
+}
+.post-more .post-row__link {
+  background: var(--ground);
+}
+.post-more .post-rows {
+  margin-top: clamp(32px, 4vw, 56px);
+}
+
+@media (max-width: 860px) {
+  .blog-head__grid,
+  .post-lead {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .post-row__link {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .post-row__img {
+    order: -1;
+  }
+  .post__photo img {
+    aspect-ratio: 4 / 3;
+  }
+  .post__ctas .pill {
+    flex: 1 1 auto;
+  }
+}

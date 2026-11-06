@@ -1,4 +1,5 @@
-import { hero, marquee } from '../content';
+import { hero, marquee, marqueeNight } from '../content';
+import { useTheme } from '../hooks/useTheme';
 import OpenNow from '../components/OpenNow';
 import './Hero.css';
 
@@ -39,10 +40,11 @@ export default function Hero() {
 }
 
 function Marquee() {
+  const items = useTheme() === 'night' ? [...marqueeNight, ...marquee] : marquee;
   /* Track is duplicated once and animated to -50% — a seamless loop. */
   const track = (
     <ul className="marquee__track" aria-hidden="true">
-      {marquee.map((m, i) => (
+      {items.map((m, i) => (
         <li key={i} className="marquee__item">
           <span className="marquee__en">{m.en}</span>
           <span className="marquee__jp jp" lang="ja">
@@ -58,7 +60,7 @@ function Marquee() {
     <div className="marquee">
       {/* One readable copy for assistive tech, the visual track is aria-hidden. */}
       <span className="visually-hidden">
-        {marquee.map((m) => m.en).join(', ')}
+        {items.map((m) => m.en).join(', ')}
       </span>
       <div className="marquee__viewport">
         {track}
