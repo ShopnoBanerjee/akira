@@ -271,7 +271,7 @@ export const footer = {
    Paste the Google Form link into registerUrl. Until then the button opens a
    pre-filled email. The feature leaves the home page by itself after `until`. */
 export const tasting = {
-  registerUrl: '',
+  registerUrl: 'https://forms.gle/RBnvg28rvdLz5NGU9',
   until: '2026-11-15',
   kana: '試食会',
   heading: 'Taste the\nsushi first',
