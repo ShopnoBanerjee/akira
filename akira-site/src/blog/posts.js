@@ -69,7 +69,7 @@ export const posts = [
       { h2: 'Questions people ask us' },
       { list: [
         'What is happening on 15 November? A public tasting: every new sushi roll and one of our two new ramens, served in booked slots.',
-        'How do I sign up? Register with the button above and we will confirm your slot. Questions first? Message us on [Instagram](https://instagram.com/_simply_akira_).',
+        'How do I sign up? Fill in the [tasting registration form](https://forms.gle/RBnvg28rvdLz5NGU9) and we will confirm your slot. Questions first? Message us on [Instagram](https://instagram.com/_simply_akira_).',
         'Is there an entry fee? Yes. We share it when we confirm your slot.',
         'Which ramen will I get? You choose one of our two new ramens on the day.',
         'Can I order sushi after the tasting? Yes, from Monday, 16 November. We make 10 plates a day Monday to Friday and 15 on Saturday and Sunday, all fresh, so it can sell out. Come early.',
