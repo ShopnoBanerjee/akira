@@ -280,6 +280,7 @@ export const tasting = {
     { label: 'When', text: 'Sunday, 15 November, in booked time slots' },
     { label: 'What', text: 'Every new sushi roll, and one of two new ramens' },
     { label: 'Entry', text: 'An entry fee applies; places are limited' },
+    { label: 'Who', text: 'Non-vegetarian only. Fixed menu with fish, crab and prawn; no allergies accommodated' },
     { label: 'After', text: 'Made fresh daily: 10 plates a day on weekdays, 15 on weekends' },
   ],
   photo: '/blog/sushi/bhetki-flame.jpg',
