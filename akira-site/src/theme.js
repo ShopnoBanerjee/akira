@@ -59,12 +59,12 @@ export async function toggleTheme() {
       fill: 'forwards',
     }), 900);
     apply(next);
-    // ...and get slurped back up, whipping a little on the way out.
+    // ...and get slurped back up: a small dip, then straight out of the top.
+    // Vertical only: any sideways move uncovers a sliver of page at the edge.
     await settle(curtain.animate(
       [
         { transform: 'translateY(0)' },
-        { transform: 'translate(-6px, 3%)', offset: 0.18 },
-        { transform: 'translate(8px, -40%)', offset: 0.6 },
+        { transform: 'translateY(3%)', offset: 0.18 },
         { transform: 'translateY(-100%)' },
       ],
       { duration: 620, easing: 'cubic-bezier(0.55, 0, 0.85, 0.36)', fill: 'forwards' }

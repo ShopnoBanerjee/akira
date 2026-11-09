@@ -2,6 +2,10 @@
   background: var(--ground);
   scroll-margin-top: var(--nav-h);
 }
+/* Without the noodles above it, the menu still ends flush on its drinks band. */
+.menu.section {
+  padding-bottom: 0;
+}
 
 .menu__group-head {
   display: flex;

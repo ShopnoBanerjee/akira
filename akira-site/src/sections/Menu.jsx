@@ -24,7 +24,7 @@ function Photo({ src, alt, area }) {
   );
 }
 
-export default function Menu() {
+export default function Menu({ tails = true }) {
   const { ramen, plates, drinks } = menu;
   const [gyoza, yakitori, karaage, donburi] = plates.categories;
 
@@ -47,8 +47,8 @@ export default function Menu() {
   );
 
   return (
-    <section className="menu has-tails" id="menu">
-      <Tails color="var(--akira-red)" />
+    <section className={tails ? 'menu has-tails' : 'menu section'} id="menu">
+      {tails && <Tails color="var(--akira-red)" />}
       <div className="wrap">
         <SectionHead kana={menu.kana} heading={menu.heading} lede={menu.lede} />
 

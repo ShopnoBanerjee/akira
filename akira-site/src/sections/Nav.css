@@ -18,6 +18,7 @@
   align-items: baseline;
   gap: 10px;
   margin-right: auto;
+  white-space: nowrap;
 }
 .nav__wordmark {
   font-weight: 900;

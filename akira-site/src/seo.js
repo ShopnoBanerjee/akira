@@ -127,6 +127,31 @@ export function postSchema(post) {
         publisher: { '@type': 'Organization', name: brand.name, logo: { '@type': 'ImageObject', url: `${SITE}/logo-512.png` } },
         about: { '@type': 'Restaurant', name: brand.name, url: `${SITE}/` },
       },
+      ...(post.event
+        ? [{
+            '@type': 'Event',
+            name: post.event.name,
+            description: post.event.description,
+            startDate: post.event.date,
+            eventStatus: 'https://schema.org/EventScheduled',
+            eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+            image: `${SITE}${post.photo}`,
+            url,
+            location: {
+              '@type': 'Restaurant',
+              name: brand.name,
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: venue.streetAddress,
+                addressLocality: 'Kolkata',
+                addressRegion: 'West Bengal',
+                postalCode: '700078',
+                addressCountry: 'IN',
+              },
+            },
+            organizer: { '@type': 'Organization', name: brand.name, url: `${SITE}/` },
+          }]
+        : []),
       {
         '@type': 'BreadcrumbList',
         itemListElement: [

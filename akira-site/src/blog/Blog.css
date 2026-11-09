@@ -188,6 +188,17 @@
   padding-left: 1.2em;
   list-style: disc;
 }
+.post__inline-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-top: 8px;
+}
+@media (max-width: 560px) {
+  .post__inline-ctas .pill {
+    flex: 1 1 auto;
+  }
+}
 .post__inline {
   margin-block: clamp(32px, 4vw, 56px);
 }

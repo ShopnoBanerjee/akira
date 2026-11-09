@@ -266,3 +266,37 @@ export const visit = {
 export const footer = {
   line: '© 2026 AKIRA · Handmade ramen, Kolkata',
 };
+
+/* ---- Sushi tasting, Sunday 15 November ----------------------------------
+   Paste the Google Form link into registerUrl. Until then the button opens a
+   pre-filled email. The feature leaves the home page by itself after `until`. */
+export const tasting = {
+  registerUrl: '',
+  until: '2026-11-15',
+  kana: '試食会',
+  heading: 'Taste the\nsushi first',
+  lede: 'A public tasting on Sunday, 15 November: every one of our new sushi rolls, plus a bowl of one of our two new ramens.',
+  facts: [
+    { label: 'When', text: 'Sunday, 15 November, in booked time slots' },
+    { label: 'What', text: 'Every new sushi roll, and one of two new ramens' },
+    { label: 'Entry', text: 'An entry fee applies; places are limited' },
+    { label: 'After', text: 'Made fresh daily: 10 plates a day on weekdays, 15 on weekends' },
+  ],
+  photo: '/blog/sushi/bhetki-flame.jpg',
+  photoAlt: 'Five pieces of bhetki sushi on a black plate, seared with a blowtorch flame',
+  post: '/blog/sushi-in-kolkata-akira',
+};
+
+const TASTING_EMAIL =
+  'mailto:management@simplyakira.com?subject=' +
+  encodeURIComponent('Sushi tasting slot, Sunday 15 November') +
+  '&body=' +
+  encodeURIComponent('Hi AKIRA,\n\nI would like to register for the sushi tasting on Sunday, 15 November.\n\nName:\nPhone:\nNumber of people:\nPreferred time:\n\nThanks!');
+
+export const registerHref = tasting.registerUrl || TASTING_EMAIL;
+
+/* Kolkata's date, so the feature switches off on time wherever the visitor is. */
+export function tastingIsOn(now = new Date()) {
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(now);
+  return today <= tasting.until;
+}

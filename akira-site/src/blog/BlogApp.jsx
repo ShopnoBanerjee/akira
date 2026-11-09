@@ -123,6 +123,21 @@ function Post({ post }) {
                     <img src={block.img} alt={block.alt} width="800" height="1000" loading="lazy" decoding="async" />
                   </figure>
                 );
+              if (block.cta)
+                return (
+                  <div key={i} className="post__inline-ctas" data-rise="">
+                    {block.cta.map((c) => (
+                      <a
+                        key={c.label}
+                        className={`pill pill--${c.style || 'red'}`}
+                        href={c.href}
+                        {...(/^https?:/.test(c.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      >
+                        {c.label}
+                      </a>
+                    ))}
+                  </div>
+                );
               if (block.h2) return <h2 key={i} className="t-sub" data-rise="">{block.h2}</h2>;
               if (block.list) return <ul key={i} data-rise="">{block.list.map((item) => <li key={item}><Rich text={item} /></li>)}</ul>;
               return <p key={i} data-rise=""><Rich text={block.p} /></p>;

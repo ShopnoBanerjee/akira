@@ -1,10 +1,13 @@
 /* ============================================================================
    AKIRA — blog posts
    Newest first. Each post gets its own address: /blog/<slug>.
-   Body blocks: { h2 }, { p }, { list: [...] } or { img, alt }. Prices follow the printed menu.
+   Body blocks: { h2 }, { p }, { list: [...] }, { img, alt } or { cta: [{ label, href, style? }] } for buttons.
+   event (optional): { name, date, description } adds Google Event data to the post's page. Prices follow the printed menu.
    Text in p and list items may link with [words](url): /#menu, /blog/<slug>, or a full URL.
    seoTitle (optional) replaces "<title> | AKIRA blog" in search results and link previews.
    ========================================================================== */
+
+import { registerHref } from '../content.js';
 
 export const blog = {
   title: 'Notes from the counter',
@@ -15,6 +18,68 @@ export const blog = {
 };
 
 export const posts = [
+  {
+    slug: 'sushi-in-kolkata-akira',
+    title: 'Sushi, the AKIRA way',
+    seoTitle: 'Sushi Tasting in Kolkata at AKIRA: Sunday 15 November',
+    event: { name: 'AKIRA sushi tasting', date: '2026-11-15', description: 'A public tasting of every new AKIRA sushi roll and one of two new ramens. Entry fee; book a slot in advance.' },
+    date: '2026-11-09',
+    excerpt: 'A public sushi tasting on Sunday, 15 November: every new roll plus one of two new ramens, at our Japanese restaurant in Kasba. Book a slot.',
+    photo: '/blog/sushi/bhetki-flame.jpg',
+    photoAlt: 'Five pieces of bhetki sushi on a black plate, seared with a blowtorch flame',
+    body: [
+      { p: 'Sushi is coming to AKIRA, and you get to taste it first. On Sunday, 15 November, we are hosting a public tasting at our Japanese restaurant in Kasba: every one of our new sushi rolls, plus one of our two new ramens. If you have been looking for sushi in Kolkata that does not pretend to be in Tokyo, this is it.' },
+      { h2: 'The tasting, in short' },
+      { list: [
+        'When: Sunday, 15 November, in booked time slots.',
+        'What: a taste of every new sushi roll, and a bowl of one of our two new ramens.',
+        'Where: AKIRA, 34 Naskarpara Road, Kasba, just off Garfa Main Road.',
+        'Entry: there is an entry fee, and places are limited, so sign up for a slot in advance.',
+      ] },
+      { cta: [{ label: 'Register for the tasting', href: registerHref }] },
+      { h2: 'Why sushi, and why our way' },
+      { p: 'Sushi began as a way of preserving fish. Over centuries it became something else entirely, and every place that makes it has made it its own. We are doing the same thing we did with our ramen: taking the Japanese idea seriously, and then cooking it with what is fresh here.' },
+      { p: 'That is why the first roll on our list uses bhetki, the fish Kolkata already loves. You will not find it on a menu in Japan. You will find it here, cured in mandarin orange juice and light soy, because that is what tastes right in this city. We are [unauthentic, on purpose](/blog/unauthentic-japanese-food-kolkata), and sushi is no exception.' },
+      { h2: 'The rice comes first' },
+      { p: 'Every roll stands on its rice. Ours is short-grain, washed six or seven times until the water runs clear, rested, cooked, and then seasoned while warm with our own sushi vinegar, a blend built in the kitchen with mirin, light soy and a little sweetness. Get the rice wrong and nothing on top can save it.' },
+      { h2: 'The five rolls' },
+      { list: [
+        'Bhetki nigiri roll: Bengal\'s favourite fish, cured in mandarin orange juice and light soy, laid over a roll of cream cheese, cucumber and carrot, finished with spicy mayo and spring onion.',
+        'Cream cheese crab tempura: crab sautéed with garlic and celery, folded into cream cheese with a touch of truffle oil, rolled with cucumber and teriyaki, then crumbed in tempura crunch with sriracha mayo.',
+        'Spicy chicken tobanjan: our karaage chicken with tobanjan, a fiery chilli bean paste, plus cream cheese, spicy mayo and cucumber, topped with tempura crunch and a drop of teriyaki.',
+        'Ebi tempura classic: tiger prawn tempura with cream cheese, cucumber and teriyaki, rolled in tempura flakes and finished with spicy mayo.',
+        'Cream cheese mushroom tempura: the vegetarian roll, with a cream cheese and mushroom filling, spicy mayo and tempura crisp.',
+      ] },
+      { img: '/blog/sushi/chicken-tobanjan.jpg', alt: 'A piece of spicy chicken tobanjan sushi topped with tempura crunch, with pickled ginger and wasabi' },
+      { p: 'Each roll is cut into five pieces and comes with pickled ginger and wasabi. They are inside-out rolls, rice on the outside, so the crunch, the sauce and the spring onion sit right where your chopsticks land.' },
+      { img: '/blog/sushi/crab-close.jpg', alt: 'A piece of cream cheese crab tempura sushi, crumbed in tempura crunch, with sauce running down the side' },
+      { h2: 'Bold, and not sorry' },
+      { p: 'Cream cheese, truffle, tobanjan, sriracha. None of it would pass a purity test, and none of it is trying to. This is sushi with the same attitude as the rest of the room: loud, a little late-night, and built to be shared. Order two for the table, the same rule we use for [our small plates](/blog/ordering-for-the-table).' },
+      { h2: 'After the 15th: only so many plates' },
+      { p: 'From Monday, 16 November, sushi joins the menu, but not without limits. Every roll is made fresh, every day: the rice washed and seasoned, the tempura crunch fried, the bhetki cured, the crab mixture cooked. That takes hours of prep, and we will not cut corners to make more.' },
+      { list: [
+        'Monday to Friday: 10 plates of sushi a day.',
+        'Saturday and Sunday: 15 plates a day.',
+      ] },
+      { p: 'When they are gone, they are gone until tomorrow. If sushi is the reason you are coming, come early.' },
+      { h2: 'The two people behind it' },
+      { img: '/blog/sushi/founders-night.jpg', alt: 'Shopno Banerjee and Aditya Paith outside AKIRA at night' },
+      { p: 'Aditya Paith runs the kitchen and built these rolls; Shopno Banerjee runs everything outside it. They have been tasting, arguing and re-rolling for weeks. The names for each roll are still being argued over too. They will be revealed at the tasting, and on [Instagram](https://instagram.com/_simply_akira_) first.' },
+      { h2: 'Questions people ask us' },
+      { list: [
+        'What is happening on 15 November? A public tasting: every new sushi roll and one of our two new ramens, served in booked slots.',
+        'How do I sign up? Register with the button above and we will confirm your slot. Questions first? Message us on [Instagram](https://instagram.com/_simply_akira_).',
+        'Is there an entry fee? Yes. We share it when we confirm your slot.',
+        'Which ramen will I get? You choose one of our two new ramens on the day.',
+        'Can I order sushi after the tasting? Yes, from Monday, 16 November. We make 10 plates a day Monday to Friday and 15 on Saturday and Sunday, all fresh, so it can sell out. Come early.',
+        'Is there vegetarian sushi? Yes: the cream cheese mushroom tempura roll.',
+        'Where is AKIRA? 34 Naskarpara Road, Kolkata 700078, in Kasba just off Garfa Main Road. [Get directions on Google Maps](https://maps.app.goo.gl/2WhihfqfnKz7q7Qw9).',
+      ] },
+      { h2: 'See you on the 15th' },
+      { p: 'Slots are limited and the room is small, so book early. Bringing friends? Put everyone on one booking and we will seat you together. Until then, the rest of [the menu](/#menu) is on every night, and if you want to know your broths before the day, start with [shoyu, miso or tonkotsu](/blog/shoyu-miso-or-tonkotsu).' },
+      { cta: [{ label: 'Register for the tasting', href: registerHref }] },
+    ],
+  },
   {
     slug: 'unauthentic-japanese-food-kolkata',
     title: 'Unauthentic, on purpose',
