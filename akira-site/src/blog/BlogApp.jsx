@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Picture from '../components/Picture';
 import { useRise } from '../hooks/useRise';
 import Nav from '../sections/Nav';
 import Footer from '../sections/Footer';
@@ -49,13 +50,17 @@ function PostRow({ post }) {
           <p>{post.excerpt}</p>
           <Meta post={post} />
         </div>
-        <img className="post-row__img" src={post.photo} alt="" width="800" height="1000" loading="lazy" decoding="async" />
+        <Picture className="post-row__img" src={post.photo} sizes="(max-width: 560px) 100vw, 320px" />
       </a>
     </li>
   );
 }
 
 function Index({ missing }) {
+  /* An unknown address is served the prerendered list, which has no note, so the
+     note appears after React adopts that HTML rather than during it. */
+  const [noted, setNoted] = useState(false);
+  useEffect(() => setNoted(missing), [missing]);
   const [lead, ...rest] = posts;
   return (
     <>
@@ -71,17 +76,17 @@ function Index({ missing }) {
             <p className="t-lead blog-head__lede" data-rise="" style={{ '--i': 1 }}>{blog.lede}</p>
             <a className="pill pill--white blog-head__cta" href="/#menu" data-rise="" style={{ '--i': 2 }}>See the menu</a>
           </div>
-          <img className="blog-head__img" data-rise="" style={{ '--i': 1 }} src={blog.photo} alt={blog.photoAlt} width="800" height="1000" decoding="async" />
+          <Picture className="blog-head__img" data-rise="" style={{ '--i': 1 }} src={blog.photo} alt={blog.photoAlt} sizes="(max-width: 860px) 100vw, 40vw" priority />
         </div>
       </header>
 
       <section className="blog-index has-tails" aria-label="All posts">
         <Tails color="var(--akira-red)" />
         <div className="wrap">
-          {missing && <p className="blog-missing">That post is not here. Here is everything we have written so far.</p>}
+          {noted && <p className="blog-missing">That post is not here. Here is everything we have written so far.</p>}
 
           <a className="post-lead" href={postHref(lead)} data-rise="">
-            <img className="post-lead__img" src={lead.photo} alt={lead.photoAlt} width="800" height="1000" decoding="async" />
+            <Picture className="post-lead__img" src={lead.photo} alt={lead.photoAlt} sizes="(max-width: 860px) 100vw, 50vw" />
             <div className="post-lead__words">
               <h2 className="post-lead__title">{lead.title}</h2>
               <p className="t-lead">{lead.excerpt}</p>
@@ -111,7 +116,7 @@ function Post({ post }) {
         </div>
 
         <figure className="post__photo" data-rise="">
-          <img src={post.photo} alt={post.photoAlt} width="800" height="1000" decoding="async" />
+          <Picture src={post.photo} alt={post.photoAlt} sizes="100vw" priority />
         </figure>
 
         <div className="wrap post__column">
@@ -120,7 +125,7 @@ function Post({ post }) {
               if (block.img)
                 return (
                   <figure key={i} className="post__inline" data-rise="">
-                    <img src={block.img} alt={block.alt} width="800" height="1000" loading="lazy" decoding="async" />
+                    <Picture src={block.img} alt={block.alt} sizes="(max-width: 960px) 100vw, 880px" />
                   </figure>
                 );
               if (block.cta)

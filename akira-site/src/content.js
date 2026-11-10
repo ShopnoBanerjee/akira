@@ -267,17 +267,17 @@ export const footer = {
   line: '© 2026 AKIRA · Handmade ramen, Kolkata',
 };
 
-/* ---- Sushi tasting, Sunday 15 November ----------------------------------
+/* ---- Sushi tasting, Saturday 14 November ----------------------------------
    Paste the Google Form link into registerUrl. Until then the button opens a
    pre-filled email. The feature leaves the home page by itself after `until`. */
 export const tasting = {
   registerUrl: 'https://forms.gle/RBnvg28rvdLz5NGU9',
-  until: '2026-11-15',
+  until: '2026-11-14',
   kana: '試食会',
   heading: 'Taste the\nsushi first',
-  lede: 'A public tasting on Sunday, 15 November: every one of our new sushi rolls, plus a bowl of one of our two new ramens.',
+  lede: 'A public tasting on Saturday, 14 November: every one of our new sushi rolls, plus a bowl of one of our two new ramens.',
   facts: [
-    { label: 'When', text: 'Sunday, 15 November, in booked time slots' },
+    { label: 'When', text: 'Saturday, 14 November, in booked time slots' },
     { label: 'What', text: 'Every new sushi roll, and one of two new ramens' },
     { label: 'Entry', text: 'An entry fee applies; places are limited' },
     { label: 'Who', text: 'Non-vegetarian only. Fixed menu with fish, crab and prawn; no allergies accommodated' },
@@ -290,9 +290,9 @@ export const tasting = {
 
 const TASTING_EMAIL =
   'mailto:management@simplyakira.com?subject=' +
-  encodeURIComponent('Sushi tasting slot, Sunday 15 November') +
+  encodeURIComponent('Sushi tasting slot, Saturday 14 November') +
   '&body=' +
-  encodeURIComponent('Hi AKIRA,\n\nI would like to register for the sushi tasting on Sunday, 15 November.\n\nName:\nPhone:\nNumber of people:\nPreferred time:\n\nThanks!');
+  encodeURIComponent('Hi AKIRA,\n\nI would like to register for the sushi tasting on Saturday, 14 November.\n\nName:\nPhone:\nNumber of people:\nPreferred time:\n\nThanks!');
 
 export const registerHref = tasting.registerUrl || TASTING_EMAIL;
 

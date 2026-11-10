@@ -16,12 +16,25 @@ const blogRoutes = {
     server.middlewares.use(rewriteBlog)
   },
   configurePreviewServer(server) {
-    server.middlewares.use(rewriteBlog)
+    server.middlewares.use(servePostPage)
   },
 }
 
+const POST_URL = /^\/blog\/([^./?]+)\/?(\?.*)?$/
+
 function rewriteBlog(req, _res, next) {
-  if (/^\/blog\/[^./?]+\/?(\?.*)?$/.test(req.url)) req.url = '/blog/index.html'
+  if (POST_URL.test(req.url)) req.url = '/blog/index.html'
+  next()
+}
+
+// The built site has a prerendered page per post; serve that one, as Vercel does,
+// so the page the browser adopts matches the post it renders.
+function servePostPage(req, _res, next) {
+  const m = req.url.match(POST_URL)
+  if (m) {
+    const page = `/blog/${m[1]}/index.html`
+    req.url = fs.existsSync(path.resolve('dist') + page) ? page : '/blog/index.html'
+  }
   next()
 }
 

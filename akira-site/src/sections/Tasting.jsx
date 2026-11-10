@@ -1,4 +1,5 @@
 import { tasting, registerHref } from '../content';
+import Picture from '../components/Picture';
 import SectionHead from '../components/SectionHead';
 import Tails from '../components/Tails';
 import './Tasting.css';
@@ -7,11 +8,11 @@ const external = /^https?:/.test(registerHref) ? { target: '_blank', rel: 'noope
 
 export default function Tasting() {
   return (
-    <section className="tasting has-tails" id="tasting" aria-label="Sushi tasting, Sunday 15 November">
+    <section className="tasting has-tails" id="tasting" aria-label="Sushi tasting, Saturday 14 November">
       <Tails color="var(--akira-red)" />
       <div className="wrap tasting__grid">
         <figure className="tasting__photo" data-rise="">
-          <img src={tasting.photo} alt={tasting.photoAlt} width="1800" height="1199" decoding="async" />
+          <Picture src={tasting.photo} alt={tasting.photoAlt} sizes="(max-width: 900px) 100vw, 55vw" />
         </figure>
         <div className="tasting__copy">
           <SectionHead kana={tasting.kana} heading={tasting.heading} lede={tasting.lede} />

@@ -1,4 +1,5 @@
 import { menu } from '../content';
+import Picture from '../components/Picture';
 import SectionHead from '../components/SectionHead';
 import Tails from '../components/Tails';
 import './Menu.css';
@@ -16,10 +17,17 @@ function GroupHead({ group }) {
   );
 }
 
+/* Ramen photos sit two across in the wider column; plate photos take a third of the row. */
+const PHOTO_SIZES = {
+  ramen: '(max-width: 1000px) 50vw, 29vw',
+  gyoza: '(max-width: 1000px) 100vw, 30vw',
+  karaage: '(max-width: 1000px) 100vw, 30vw',
+};
+
 function Photo({ src, alt, area }) {
   return (
     <figure className={`menu__photo menu__photo--${area}`} data-rise="">
-      <img src={src} alt={alt} width="800" height="1000" loading="lazy" decoding="async" />
+      <Picture src={src} alt={alt} sizes={PHOTO_SIZES[area]} />
     </figure>
   );
 }

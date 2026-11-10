@@ -1,0 +1,161 @@
+{
+  "/blog/sushi/bhetki-flame.jpg": {
+    "w": 1800,
+    "h": 1199,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "/blog/sushi/chicken-tobanjan.jpg": {
+    "w": 1066,
+    "h": 1600,
+    "widths": [
+      400,
+      800,
+      1066
+    ]
+  },
+  "/blog/sushi/crab-close.jpg": {
+    "w": 1402,
+    "h": 1600,
+    "widths": [
+      400,
+      800,
+      1200,
+      1402
+    ]
+  },
+  "/blog/sushi/founders-night.jpg": {
+    "w": 1800,
+    "h": 1199,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "/community/kitchen.jpg": {
+    "w": 900,
+    "h": 900,
+    "widths": [
+      400,
+      800,
+      900
+    ]
+  },
+  "/community/late-night.jpg": {
+    "w": 900,
+    "h": 900,
+    "widths": [
+      400,
+      800,
+      900
+    ]
+  },
+  "/community/red-stools.jpg": {
+    "w": 900,
+    "h": 900,
+    "widths": [
+      400,
+      800,
+      900
+    ]
+  },
+  "/community/sakura.jpg": {
+    "w": 900,
+    "h": 900,
+    "widths": [
+      400,
+      800,
+      900
+    ]
+  },
+  "/community/street-signs.jpg": {
+    "w": 900,
+    "h": 1125,
+    "widths": [
+      400,
+      800,
+      900
+    ]
+  },
+  "/dishes/gyoza.jpg": {
+    "w": 800,
+    "h": 1000,
+    "widths": [
+      400,
+      800
+    ]
+  },
+  "/dishes/karaage.jpg": {
+    "w": 800,
+    "h": 1000,
+    "widths": [
+      400,
+      800
+    ]
+  },
+  "/dishes/ramen-overhead.jpg": {
+    "w": 1000,
+    "h": 1250,
+    "widths": [
+      400,
+      800,
+      1000
+    ]
+  },
+  "/dishes/ramen.jpg": {
+    "w": 1000,
+    "h": 1250,
+    "widths": [
+      400,
+      800,
+      1000
+    ]
+  },
+  "/dishes/small-plates.jpg": {
+    "w": 800,
+    "h": 1000,
+    "widths": [
+      400,
+      800
+    ]
+  },
+  "/founders/aditya-paith.jpg": {
+    "w": 600,
+    "h": 600,
+    "widths": [
+      400,
+      600
+    ]
+  },
+  "/founders/shopno-banerjee.jpg": {
+    "w": 600,
+    "h": 600,
+    "widths": [
+      400,
+      600
+    ]
+  },
+  "/hero/street-front-1200.jpg": {
+    "w": 1200,
+    "h": 1500,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "/hero/street-front-700.jpg": {
+    "w": 700,
+    "h": 875,
+    "widths": [
+      400,
+      700
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 import { posts } from '../blog/posts';
+import Picture from '../components/Picture';
 import SectionHead from '../components/SectionHead';
 import './FromBlog.css';
 
@@ -17,7 +18,7 @@ export default function FromBlog() {
           {latest.map((p, i) => (
             <li key={p.slug} data-rise="" style={{ '--i': i }}>
               <a className="from-blog__item" href={`/blog/${p.slug}`}>
-                <img src={p.photo} alt="" width="800" height="1000" loading="lazy" decoding="async" />
+                <Picture src={p.photo} sizes="180px" />
                 <span>
                   <span className="t-sub from-blog__title">{p.title}</span>
                   <span className="from-blog__excerpt">{p.excerpt}</span>

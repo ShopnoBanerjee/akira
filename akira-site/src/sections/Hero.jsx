@@ -1,4 +1,5 @@
 import { hero, marquee, marqueeNight } from '../content';
+import Picture from '../components/Picture';
 import { useTheme } from '../hooks/useTheme';
 import OpenNow from '../components/OpenNow';
 import './Hero.css';
@@ -22,14 +23,11 @@ export default function Hero() {
         </div>
 
         <figure className="hero__photo">
-          <img
+          <Picture
             src="/hero/street-front-1200.jpg"
-            srcSet="/hero/street-front-700.jpg 700w, /hero/street-front-1200.jpg 1200w"
             sizes="(max-width: 860px) 100vw, 55vw"
             alt={hero.photoAlt}
-            width="1200"
-            height="1500"
-            fetchPriority="high"
+            priority
           />
         </figure>
       </div>

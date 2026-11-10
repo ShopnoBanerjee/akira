@@ -1,4 +1,5 @@
 import { story } from '../content';
+import Picture from '../components/Picture';
 import SectionHead from '../components/SectionHead';
 import './Story.css';
 
@@ -20,13 +21,11 @@ export default function Story() {
           <div className="story__founders">
             {story.founders.map((f, i) => (
               <article key={f.name} className="founder" data-rise="" style={{ '--i': i }}>
-                <img
+                <Picture
                   className="founder__photo"
                   src={f.photo}
                   alt={f.name}
-                  width="600"
-                  height="600"
-                  loading="lazy"
+                  sizes="(max-width: 560px) 112px, (max-width: 900px) 50vw, 22vw"
                 />
                 <div>
                   <h3 className="t-sub">{f.name}</h3>

@@ -72,8 +72,8 @@
          Everything moves by transform and opacity, so a busy main thread can't stutter it. -->
     <script>document.documentElement.classList.add('splashing');</script>
     <link rel="preload" as="image" href="/akira-logo-white.svg" fetchpriority="high" />
-    <link rel="preload" as="image" href="/hero/street-front-1200.jpg"
-      imagesrcset="/hero/street-front-700.jpg 700w, /hero/street-front-1200.jpg 1200w"
+    <link rel="preload" as="image" type="image/avif" fetchpriority="high"
+      imagesrcset="/img/hero/street-front-1200-400.avif 400w, /img/hero/street-front-1200-800.avif 800w, /img/hero/street-front-1200-1200.avif 1200w"
       imagesizes="(max-width: 860px) 100vw, 55vw" />
     <noscript><style>#splash { display: none; } html.splashing { overflow: auto; }</style></noscript>
     <style>

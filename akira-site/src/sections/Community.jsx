@@ -1,4 +1,5 @@
 import { community } from '../content';
+import Picture from '../components/Picture';
 import SectionHead from '../components/SectionHead';
 import './Community.css';
 
@@ -25,12 +26,11 @@ export default function Community() {
         <ul className="community__mosaic">
           {community.tiles.map((t, i) => (
             <li key={t.label} className="tile" data-rise="" style={{ '--i': i }}>
-              <img
+              <Picture
                 className="tile__img"
                 src={t.photo}
                 alt={t.alt}
-                loading="lazy"
-                decoding="async"
+                sizes={i === 0 ? '(max-width: 860px) 100vw, 36vw' : '(max-width: 860px) 50vw, 30vw'}
               />
               <span className="tile__label">{t.label}</span>
             </li>
