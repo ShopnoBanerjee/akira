@@ -209,6 +209,166 @@
   object-fit: cover;
   background: var(--deep);
 }
+/* ---- posters: a photo shown whole, with words set on it ---- */
+.poster {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--deep);
+  color: var(--white);
+  container-type: inline-size;
+  isolation: isolate;
+}
+.poster img {
+  display: block;
+  width: 100%;
+  height: auto; /* the photo keeps its own shape: nothing is cropped */
+}
+.poster__words {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
+  gap: 1.6cqw 4cqw;
+  padding: 13cqw 6cqw 6cqw;
+  background: linear-gradient(to top, rgb(35 31 32 / 0.96) 0%, rgb(35 31 32 / 0.9) 62%, rgb(35 31 32 / 0) 100%);
+}
+.poster--top .poster__words {
+  top: 0;
+  bottom: auto;
+  padding: 6cqw 6cqw 13cqw;
+  background: linear-gradient(to bottom, rgb(35 31 32 / 0.96) 0%, rgb(35 31 32 / 0.9) 62%, rgb(35 31 32 / 0) 100%);
+}
+.poster__kana {
+  grid-row: 1 / span 2;
+  writing-mode: vertical-rl; /* reads top to bottom, like a shop sign */
+  font-size: 10cqw;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--akira-red);
+  -webkit-text-stroke: 0.35cqw var(--white);
+  paint-order: stroke fill;
+}
+.poster--blue .poster__kana {
+  color: var(--blue-soft);
+  -webkit-text-stroke: 0;
+}
+.poster__line,
+.poster__note {
+  grid-column: 2;
+}
+.poster__words > :first-child:not(.poster__kana),
+.poster__words > :first-child:not(.poster__kana) ~ * {
+  grid-column: 1 / -1;
+}
+.poster__line {
+  font-size: 7.4cqw;
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.poster__note {
+  max-width: 30ch;
+  font-size: max(15px, 3.1cqw);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.poster__tag {
+  position: absolute;
+  z-index: 1;
+  right: 4cqw;
+  bottom: 5cqw;
+  padding: 1.4cqw 3cqw;
+  border: 0.6cqw solid var(--ink);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: max(12px, 2.8cqw);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  rotate: -5deg;
+}
+.poster--bottom .poster__tag {
+  top: 5cqw;
+  bottom: auto;
+}
+
+/* In the story they hang slightly off-square, each on a block of brand colour, like bills on a wall. */
+.post__body .poster {
+  width: min(100% - 16px, 560px);
+  margin: clamp(48px, 7vw, 96px) auto;
+  rotate: -1.4deg;
+  box-shadow: 14px 14px 0 var(--akira-red);
+}
+.post__body .poster--blue {
+  rotate: 1.4deg;
+  box-shadow: -14px 14px 0 var(--akira-blue);
+}
+@media (min-width: 961px) {
+  .post__body .poster--red {
+    margin-left: -6%;
+  }
+  .post__body .poster--blue {
+    margin-right: -6%;
+  }
+}
+
+/* The cover: the post's own photo as the poster, its title set on it. */
+.post--cover {
+  padding-top: clamp(20px, 3vw, 48px);
+}
+.cover {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 72px);
+  align-items: end;
+}
+.cover .poster {
+  width: 100%;
+  max-width: 640px;
+  box-shadow: 16px 16px 0 var(--akira-red);
+}
+.cover .poster__line {
+  font-size: 8.2cqw;
+}
+.cover__words {
+  display: grid;
+  gap: 16px;
+  padding-bottom: 16px;
+}
+.cover__words .t-lead {
+  max-width: 40ch;
+}
+.cover__side {
+  font-size: clamp(56px, 9vw, 132px);
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--kana);
+}
+@media (min-width: 861px) {
+  .cover {
+    grid-template-columns: minmax(0, min(44vw, 640px)) minmax(0, 1fr);
+  }
+  .cover__side {
+    writing-mode: vertical-rl;
+    justify-self: start;
+    letter-spacing: 0.08em;
+  }
+}
+@media (max-width: 860px) {
+  .cover .poster {
+    width: calc(100% - 16px);
+  }
+  .cover__side {
+    display: none;
+  }
+}
+
 .post__body a {
   font-weight: 700;
   text-decoration: underline;

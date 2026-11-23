@@ -86,7 +86,7 @@ function Index({ missing }) {
           {noted && <p className="blog-missing">That post is not here. Here is everything we have written so far.</p>}
 
           <a className="post-lead" href={postHref(lead)} data-rise="">
-            <Picture className="post-lead__img" src={lead.photo} alt={lead.photoAlt} sizes="(max-width: 860px) 100vw, 50vw" />
+            <Picture className="post-lead__img" src={lead.photo} alt={lead.photoAlt} sizes="(max-width: 860px) 100vw, 50vw" style={lead.photoFocus ? { objectPosition: lead.photoFocus } : undefined} />
             <div className="post-lead__words">
               <h2 className="post-lead__title">{lead.title}</h2>
               <p className="t-lead">{lead.excerpt}</p>
@@ -102,26 +102,61 @@ function Index({ missing }) {
   );
 }
 
+/* A photo shown whole, at its own shape, with words set on it like a street poster.
+   The words sit on a dark fade that grows with them, so they stay readable on any photo. */
+function Poster({ src, alt, kana, line, note, tag, place = 'bottom', tone = 'red', as: Line = 'p', priority = false }) {
+  return (
+    <figure className={`poster poster--${place} poster--${tone}`} data-rise="">
+      <Picture src={src} alt={alt} sizes="(max-width: 700px) 100vw, 620px" priority={priority} />
+      {tag && <span className="poster__tag">{tag}</span>}
+      <figcaption className="poster__words">
+        {kana && <span className="poster__kana jp" aria-hidden="true">{kana}</span>}
+        <Line className="poster__line">{line}</Line>
+        {note && <span className="poster__note">{note}</span>}
+      </figcaption>
+    </figure>
+  );
+}
+
 function Post({ post }) {
   const others = posts.filter((p) => p !== post);
   return (
     <>
-      <article className="post">
-        <div className="wrap post__column">
-          <header className="post__head" data-rise="">
-            <h1 className="post__title">{post.title}</h1>
-            <p className="t-lead">{post.excerpt}</p>
-            <Meta post={post} />
-          </header>
-        </div>
+      <article className={post.cover ? 'post post--cover' : 'post'}>
+        {post.cover ? (
+          <div className="wrap">
+            <header className="cover">
+              <Poster src={post.photo} alt={post.photoAlt} line={post.title} as="h1" priority {...post.cover} />
+              <div className="cover__words" data-rise="">
+                {post.cover.side && <p className="cover__side jp" aria-hidden="true">{post.cover.side}</p>}
+                <p className="t-lead">{post.excerpt}</p>
+                <Meta post={post} />
+              </div>
+            </header>
+          </div>
+        ) : (
+          <>
+            <div className="wrap post__column">
+              <header className="post__head" data-rise="">
+                <h1 className="post__title">{post.title}</h1>
+                <p className="t-lead">{post.excerpt}</p>
+                <Meta post={post} />
+              </header>
+            </div>
 
-        <figure className="post__photo" data-rise="">
-          <Picture src={post.photo} alt={post.photoAlt} sizes="100vw" priority />
-        </figure>
+            <figure className="post__photo" data-rise="">
+              <Picture src={post.photo} alt={post.photoAlt} sizes="100vw" priority />
+            </figure>
+          </>
+        )}
 
         <div className="wrap post__column">
           <div className="post__body">
             {post.body.map((block, i) => {
+              if (block.poster) {
+                const { poster, ...rest } = block;
+                return <Poster key={i} src={poster} {...rest} />;
+              }
               if (block.img)
                 return (
                   <figure key={i} className="post__inline" data-rise="">

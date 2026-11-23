@@ -38,6 +38,46 @@
       1600
     ]
   },
+  "/blog/tcp/chef-at-the-pans.jpg": {
+    "w": 1500,
+    "h": 2000,
+    "widths": [
+      400,
+      800,
+      1200,
+      1500
+    ]
+  },
+  "/blog/tcp/counter-posters.jpg": {
+    "w": 1500,
+    "h": 2000,
+    "widths": [
+      400,
+      800,
+      1200,
+      1500
+    ]
+  },
+  "/blog/tcp/salad-and-oils.jpg": {
+    "w": 1500,
+    "h": 2000,
+    "widths": [
+      400,
+      800,
+      1200,
+      1500
+    ]
+  },
+  "/blog/tcp/setting-up.jpg": {
+    "w": 1500,
+    "h": 2000,
+    "widths": [
+      400,
+      800,
+      1200,
+      1500
+    ]
+  },
   "/community/kitchen.jpg": {
     "w": 900,
     "h": 900,

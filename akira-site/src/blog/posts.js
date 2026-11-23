@@ -2,6 +2,9 @@
    AKIRA — blog posts
    Newest first. Each post gets its own address: /blog/<slug>.
    Body blocks: { h2 }, { p }, { list: [...] }, { img, alt } or { cta: [{ label, href, style? }] } for buttons.
+   { poster, alt, line, kana?, note?, tag?, place?: 'top'|'bottom', tone?: 'red'|'blue' } shows a photo whole (uncropped) with words set on it.
+   cover (optional): { tag?, side?, place?, tone? } turns the post's own photo into a poster with the title on it.
+   photoFocus (optional): which part of the photo to keep when a card crops it, e.g. '70% 85%'.
    event (optional): { name, date, description } adds Google Event data to the post's page. Prices follow the printed menu.
    Text in p and list items may link with [words](url): /#menu, /blog/<slug>, or a full URL.
    seoTitle (optional) replaces "<title> | AKIRA blog" in search results and link previews.
@@ -17,7 +20,66 @@ export const blog = {
   photoAlt: 'A hand-painted red dragon on the wall with AKIRA written down its body',
 };
 
+const PARTY_WHATSAPP =
+  'https://wa.me/917596977724?text=' + encodeURIComponent('Hi AKIRA, I would like a live Japanese food counter for my party.');
+
 export const posts = [
+  {
+    slug: 'calcutta-porkaddicts-10-years-akira-live-counter',
+    title: 'Pork on a stick, zero regrets: our night at TCP\'s 10th',
+    seoTitle: 'AKIRA at The Calcutta Porkaddicts 10th Anniversary | Japanese Live Counter, Kolkata',
+    date: '2026-11-23',
+    excerpt: 'AKIRA cooked pork yakitori, pork gyoza and grilled pork salad live at The Calcutta Porkaddicts\' 10th foundation day in Tangra. Now our Japanese live counter is open for parties in Kolkata.',
+    photo: '/blog/tcp/salad-and-oils.jpg',
+    photoFocus: '70% 88%',
+    cover: { tag: 'TCP · 10 years · Tangra', side: '豚祭り', place: 'top', tone: 'red' },
+    photoAlt: 'A grilled pork salad in a paper bowl held over the AKIRA counter, with jars of AKIRA chili oil and ginger scallion oil, a pan of pork yakitori skewers and a pan of gyoza',
+    body: [
+      { p: 'On 21 November, The Calcutta Porkaddicts turned ten, and AKIRA was on the line. For one evening our Japanese restaurant in Kolkata left Kasba, set up two pans on a counter at Pei Mei Chinese High School in Tangra, and cooked Japanese pork dishes live for a room that takes pork more seriously than anyone in the city. We came home tired, smelling of the grill, and very happy.' },
+      { h2: 'Ten years of The Calcutta Porkaddicts' },
+      { p: 'The Calcutta Porkaddicts, TCP to its members, started in 2016 as a lunch for thirty people in Tiretta Bazar. Ten years on it is a community of more than 7,500 people across Kolkata and other cities, built on one motto: eat and let eat. Its tenth foundation day, called Hogging a Decade, brought kitchens cooking Chinese, Japanese, Thai, Indonesian, Korean, Tibetan, Bhutanese, Malaysian and Singaporean food under one roof in Tangra, the home of Kolkata\'s Chinese food.' },
+      { p: 'My Kolkata at The Telegraph covered the evening and listed what every kitchen served. You can read it here: [The Calcutta Porkaddicts celebrate a decade of food and fellowship in Tangra](https://www.telegraphindia.com/my-kolkata/food/the-calcutta-porkaddicts-celebrate-a-decade-of-food-and-fellowship-in-tangra/cid/2190872).' },
+      { h2: 'The Japanese kitchen on the line-up' },
+      { p: 'Japanese food in Kolkata usually means sushi and a quiet table. We brought the other side of it: izakaya food, the kind you eat standing up with a drink in your hand. AKIRA was the Japanese kitchen at the fiesta, and we cooked everything to order in front of the queue, on a live counter with the pans in plain view.' },
+      { poster: '/blog/tcp/chef-at-the-pans.jpg', kana: '豚串', line: 'Pork on a stick. Zero regrets.', note: 'Pork yakitori and pork gyoza, cooked in front of the queue.', place: 'top', tone: 'red', alt: 'An AKIRA chef in an apron smiling as he cooks a pan of pork yakitori skewers and a pan of pork gyoza on the live counter, with jars of chili oil in front' },
+      { h2: 'What we cooked: three Japanese pork dishes' },
+      { list: [
+        'Pork yakitori: skewers of pork straight off the heat, glazed with our own tare. Our poster called it pork on a stick, zero regrets. In Japanese it is butagushi.',
+        'Pork gyoza: pan-fried Japanese dumplings with a crisp base and a juicy pork filling. The poster said one gyoza is a lie, because nobody stops at one.',
+        'Grilled pork salad: grilled pork over greens with a creamy dressing and pickled chillies. Yes, salad. No, not boring.',
+      ] },
+      { p: 'On the counter beside the pans sat jars of our chili oil and our ginger scallion oil, the same two we cook with at the restaurant. Plenty of plates left the counter with an extra spoonful of one or the other.' },
+      { poster: '/blog/tcp/counter-posters.jpg', kana: '餃子', line: 'One gyoza is a lie.', note: 'Nobody stops at one.', place: 'bottom', tone: 'blue', alt: 'A member of the AKIRA team flashing a peace sign behind the counter, with three AKIRA pop-up posters for grilled pork salad, pork yakitori and pork gyoza taped to the wall' },
+      { h2: 'What the night felt like' },
+      { p: 'A live counter is honest in a way a kitchen behind a wall is not. People watch the gyoza go into the pan. They watch the skewers turn. They ask what tare is, and whether yakitori is always chicken (it usually is; ours that night was pork, for obvious reasons). Then they eat it thirty seconds after it leaves the heat, which is when this food is at its best.' },
+      { p: 'The pans did not get a rest. People came back for a second plate, brought a friend to the counter for a third, and stayed to talk about ramen, about Japan, and about where in Kolkata to find us. For a room full of people who have eaten pork every way it can be cooked, that was the best review we could have asked for. Thank you to everyone at TCP for having us, and for ten years of getting strangers to share a table.' },
+      { poster: '/blog/tcp/setting-up.jpg', kana: 'サラダ', line: 'Yes, salad. No, not boring.', note: 'Setting up before the doors opened.', place: 'bottom', tone: 'red', alt: 'A member of the AKIRA team setting up the counter before service, with the three pop-up posters along the front' },
+      { h2: 'Now booking: a Japanese live counter for your party' },
+      { p: 'That night answered a question we had been asked for months: can AKIRA cook at my party? Yes. After cooking live for the Porkaddicts, we are taking bookings for live counters and party catering in Kolkata. We bring the pans, the cooks and the food, set up at your venue, and cook Japanese food to order in front of your guests.' },
+      { list: [
+        'Gyoza: pan-fried Japanese dumplings, cooked in batches so every plate is hot.',
+        'Yakitori: skewers off the heat, glazed with tare as they turn.',
+        'Karaage: crisp Japanese fried chicken.',
+        'Sushi: our rolls, made fresh for your table.',
+        'Plus dishes from our wider Asian kitchen, planned around your guests.',
+      ] },
+      { p: 'It works for house parties, birthdays, office parties, pop-ups, wedding functions and any evening where you would rather your guests gather around a counter than a buffet. Tell us the date and the number of people. We handle the rest.' },
+      { cta: [
+        { label: 'Plan your party on WhatsApp', href: PARTY_WHATSAPP },
+        { label: 'See the menu', href: '/#menu', style: 'ink' },
+      ] },
+      { h2: 'Questions people ask us' },
+      { list: [
+        'Does AKIRA do catering in Kolkata? Yes. We cater parties and events across Kolkata with handmade Japanese and Asian plates, either as a live counter or served to the table.',
+        'What is a Japanese live counter? A small kitchen set up at your venue where our cooks make gyoza, yakitori, karaage and sushi to order in front of your guests, the way we cooked at The Calcutta Porkaddicts\' 10th anniversary.',
+        'How do I book AKIRA for a party? Message us on WhatsApp at [75969 77724](' + PARTY_WHATSAPP + ') with your date, your area and how many guests you expect. We will plan the menu with you.',
+        'Can I eat pork yakitori and pork gyoza at the restaurant? Gyoza and yakitori are on [our menu](/#menu) every day, alongside ramen and karaage. [Ordering for the table](/blog/ordering-for-the-table) explains each small plate.',
+        'Where is AKIRA? 34 Naskarpara Road, Kolkata 700078, in Kasba just off Garfa Main Road, South Kolkata. [Open it in Google Maps](https://maps.app.goo.gl/2WhihfqfnKz7q7Qw9).',
+      ] },
+      { h2: 'Come and eat the rest of it' },
+      { p: 'The counter in Tangra was three dishes. The restaurant is the whole story: handmade ramen in [shoyu, spicy miso and tonkotsu](/blog/shoyu-miso-or-tonkotsu), small plates off the grill, and [sushi made our way](/blog/sushi-in-kolkata-akira). We are a Japanese restaurant in South Kolkata that cooks [unauthentic, on purpose](/blog/unauthentic-japanese-food-kolkata), and we would love to cook for you, at our counter or at yours.' },
+    ],
+  },
   {
     slug: 'sushi-in-kolkata-akira',
     title: 'Sushi, the AKIRA way',
@@ -279,7 +341,7 @@ export const posts = [
 const WORDS_PER_MINUTE = 200;
 
 export function readingTime(post) {
-  const text = post.body.map((b) => b.p || b.h2 || (b.list || []).join(' ')).join(' ').replace(/\]\([^)]*\)/g, ' ');
+  const text = post.body.map((b) => b.p || b.h2 || b.line || (b.list || []).join(' ')).join(' ').replace(/\]\([^)]*\)/g, ' ');
   return Math.max(1, Math.round(text.split(/\s+/).length / WORDS_PER_MINUTE));
 }
 
